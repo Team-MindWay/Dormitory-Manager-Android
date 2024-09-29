@@ -22,6 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "Dormitorymanager"
 include(":app")
 include(":data")
-include(":data2")
 include(":domain")
 include(":presentation")

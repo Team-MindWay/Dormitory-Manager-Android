@@ -1,4 +1,4 @@
-package com.kim.data2
+package com.kim.data
 
 import org.junit.Test
 
