@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kim.data2"
+        applicationId = "com.kim.data"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
