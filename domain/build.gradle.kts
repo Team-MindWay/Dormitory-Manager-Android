@@ -1,20 +1,19 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id(Dependency.Gradle.LIBRARY)
+    id(Dependency.Gradle.KOTLIN)
+    id(Dependency.Gradle.KSP)
 }
 
 android {
-    namespace = "com.kim.domain"
-    compileSdk = 34
+    namespace =  ProjectProperties.NameSpace.DOMAIN
+    compileSdk =  ProjectProperties.Versions.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.kim.domain"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk =ProjectProperties.Versions.MIN_SDK
+        targetSdk = ProjectProperties.Versions.TARGET_SDK
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -24,23 +23,23 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD_FILES),
+                ProjectProperties.Files.PROGUARD_FILES
             )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ProjectProperties.Versions.JAVA_VERSION
+        targetCompatibility = ProjectProperties.Versions.JAVA_VERSION
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ProjectProperties.Versions.JVM_TARGET
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = ProjectProperties.Versions.KOTLIN_COMPILER_EXTENSION
     }
     packaging {
         resources {
@@ -51,19 +50,16 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(Dependency.AndroidX.CORE_KTX)
+    implementation(Dependency.AndroidX.APPCOMPAT)
+    implementation(Dependency.Google.MATERIAL)
+    implementation(Dependency.AndroidX.COMPOSE_LIFECYCLE)
+    testImplementation(Dependency.Test.JUNIT)
+    androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
+    androidTestImplementation(Dependency.Test.ESPRESSO)
+
+    implementation(Dependency.Hilt.HILT)
+    ksp(Dependency.Hilt.HILT_COMPILER)
+
+    implementation(Dependency.OkHttp.OKHTTP)
 }
