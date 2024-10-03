@@ -1,6 +1,8 @@
 package view.main.Screen
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -24,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kim.presentation.R
 import view.main.component.MyRankingcomponent
 import view.main.component.Rankingcomponent
 import view.main.component.RankingcomponentltemData
@@ -57,6 +62,31 @@ fun mainscreen (
         ){
 
         }
+        Row(
+            Modifier
+                .width(360.dp)
+                .height(32.dp)
+                .padding(start = 316.dp, top = 4.dp, end = 10.dp, bottom = 4.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
+            verticalAlignment = Alignment.CenterVertically,
+
+        ){
+            Box(
+                Modifier
+                .padding(1.dp)
+                .width(40.dp)
+                .height(40.dp)
+            ){
+                Image(
+                    painter = painterResource(id = R.drawable.user),
+                    contentDescription = "image description",
+                    contentScale = ContentScale.None
+                )
+
+            }
+
+        }
+
 
         Row(
             Modifier
