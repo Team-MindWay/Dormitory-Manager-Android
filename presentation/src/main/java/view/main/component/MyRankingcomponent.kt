@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Rankingcomponent(
+fun MyRankingcomponent(
     modifier: Modifier=Modifier
 ){
     Column (
@@ -70,6 +70,6 @@ fun Rankingcomponent(
 
 @Composable
 @Preview
-fun PreviewRankingComponent(){
-   Rankingcomponent()
+fun PreviewMyRankingComponent(){
+   MyRankingcomponent()
 }
