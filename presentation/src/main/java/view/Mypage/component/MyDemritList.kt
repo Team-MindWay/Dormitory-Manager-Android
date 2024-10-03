@@ -61,8 +61,8 @@ fun MyDemritList(
             }
             Column(
                 Modifier
-                .width(123.dp)
-                .height(103.dp),
+                .width(160.dp)
+                .height(160.dp),
                 verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top),
                 horizontalAlignment = Alignment.Start,
             ){
