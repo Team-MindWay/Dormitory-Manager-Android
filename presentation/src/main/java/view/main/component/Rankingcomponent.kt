@@ -15,13 +15,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+data class RankingcomponentltemData(
+    val Rank: String,
+    val name: String,
+    val number: String
+)
 @Composable
 fun Rankingcomponent (
+    Rank: String,
+    name: String,
+    number: String,
    modifier: Modifier=Modifier
+
 
 ){
     Row(
@@ -37,7 +46,7 @@ fun Rankingcomponent (
         verticalAlignment = Alignment.CenterVertically,
     ){
         Text(
-            text = "5위",
+            text = Rank,
             style = TextStyle(
                 fontSize = 16.sp,
 
@@ -48,7 +57,7 @@ fun Rankingcomponent (
         )
         Spacer(modifier = Modifier.width(20.dp))
         Text(
-            text = "김재관",
+            text = name,
             style = TextStyle(
                 fontSize = 16.sp,
 
@@ -59,7 +68,7 @@ fun Rankingcomponent (
         )
         Spacer(modifier = Modifier.width(152.dp))
         Text(
-            text = "7회",
+            text = number,
             style = TextStyle(
                 fontSize = 14.sp,
                 fontWeight = FontWeight(600),
@@ -75,5 +84,11 @@ fun Rankingcomponent (
 @Composable
 @Preview
 fun PreviewRankingcomponent(){
-    Rankingcomponent()
+    Rankingcomponent(
+
+        Rank = "5위",
+        name = "김재관",
+        number = "7회"
+
+    )
 }
