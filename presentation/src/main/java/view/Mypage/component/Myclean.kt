@@ -30,7 +30,7 @@ fun Myclean(
             .width(320.dp)
             .height(74.dp)
             .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp))
-            .padding(8.dp),  // 외부 패딩 추가
+            .padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 16.dp),  // 외부 패딩 추가
         horizontalArrangement = Arrangement.SpaceBetween,  // 요소 간 간격 조절
         verticalAlignment = Alignment.CenterVertically      // 수직 정렬 중앙 배치
     ) {
@@ -38,6 +38,7 @@ fun Myclean(
         Column(
             Modifier
                 .width(95.dp)
+
                 .height(41.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
