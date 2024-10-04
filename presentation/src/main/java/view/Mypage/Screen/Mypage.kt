@@ -34,7 +34,7 @@ fun Mypage(
 
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color(0xFF1E1E1E)) // 배경색 설정
+            .background(color = Color(0xFF1E1E1E))
     ){
         Row (
             Modifier

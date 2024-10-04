@@ -18,18 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kim.presentation.R
 import view.main.component.MyRankingcomponent
+import view.main.component.MypageButton
 import view.main.component.Rankingcomponent
 import view.main.component.RankingcomponentltemData
 
@@ -38,8 +33,6 @@ import view.main.component.TimeComponent
 @Composable
 fun mainscreen (
     rankingcomponentltemData: List<RankingcomponentltemData>,
-
-
     modifier: Modifier=Modifier
 ){
     Column(
@@ -51,17 +44,8 @@ fun mainscreen (
 
 
     ){
-        Row(
-            Modifier
-                .padding(0.dp)
-                .width(360.dp)
-                .height(54.dp),
-            horizontalArrangement = Arrangement.spacedBy(102.59542846679688.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.Top,
 
-        ){
 
-        }
         Row(
             Modifier
                 .width(360.dp)
@@ -71,19 +55,9 @@ fun mainscreen (
             verticalAlignment = Alignment.CenterVertically,
 
         ){
-            Box(
-                Modifier
-                .padding(1.dp)
-                .width(40.dp)
-                .height(40.dp)
-            ){
-                Image(
-                    painter = painterResource(id = R.drawable.user),
-                    contentDescription = "image description",
-                    contentScale = ContentScale.None
-                )
 
-            }
+                MypageButton(){}
+
 
         }
 
@@ -227,6 +201,8 @@ fun mainscreen (
 fun PreviewMainScreen(){
 
     mainscreen(
+
+
         rankingcomponentltemData = listOf(
             RankingcomponentltemData(Rank = "5등", name = "김재관", number = "5회"),
             RankingcomponentltemData(Rank = "5등", name = "김재관", number = "5회"),
@@ -235,6 +211,9 @@ fun PreviewMainScreen(){
 
 
 
+
         )
+
     )
+
 }

@@ -25,15 +25,17 @@ import view.login.component.DomaGathbutton
 
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+
+
 ) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center, // 수직 중앙 정렬 추가
+        verticalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color(0xFF1E1E1E)) // 배경색 설정
+            .background(color = Color(0xFF1E1E1E))
     ) {
         Column(
             Modifier
