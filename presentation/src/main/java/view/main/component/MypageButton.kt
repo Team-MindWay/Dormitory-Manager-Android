@@ -1,6 +1,7 @@
 package view.main.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import com.kim.presentation.R
 @Composable
 fun MypageButton(
     modifier: Modifier=Modifier,
+    onClick: () -> Unit
 
 
 
@@ -36,8 +38,10 @@ fun MypageButton(
             .padding(1.dp)
             .width(24.dp)
             .height(24.dp)
+            .clickable(onClick = onClick)
     ) {
         Image(
+
             painter = painterResource(id = R.drawable.user),
             contentDescription = "image description",
             contentScale = ContentScale.None,
@@ -50,5 +54,5 @@ fun MypageButton(
 @Composable
 @Preview
 fun PreviewMypageButton(){
-    MypageButton()
+    MypageButton(){}
 }
