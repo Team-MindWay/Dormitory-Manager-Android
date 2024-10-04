@@ -4,6 +4,7 @@ import android.service.autofill.OnClickAction
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -29,35 +30,34 @@ import androidx.compose.ui.unit.sp
 
  ){
     Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
-        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .width(320.dp)
             .height(52.dp)
             .background(color = Color(0xFF494949), shape = RoundedCornerShape(size = 10.dp))
             .padding(start = 133.dp, top = 13.dp, end = 133.dp, bottom = 13.dp)
-
-            .then(modifier)
+            .clickable(onClick = onClick),
+        horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically,
     )
 
-    {
-        Text(
 
-            text = "Ganth",
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight(700),
-                color = Color(0xFFE0E0E0),
+        {
+            Text(
 
-                )
-        )
+                text = "Ganth",
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFFE0E0E0),
+
+                    )
+            )
 
 
+        }
 
 
-    }
-
- }
+}
 @Preview
 @Composable
 fun DomaGauthbuttonPrevies(){
