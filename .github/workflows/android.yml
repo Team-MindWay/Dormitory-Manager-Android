@@ -20,7 +20,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ../gradlew build --warning-mode=none --stacktrace --info
 
       - name: MindWay Android CI success Discord Notification
         uses: sarisia/actions-status-discord@v1
