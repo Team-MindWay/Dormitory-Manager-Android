@@ -17,10 +17,13 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
+
+      - name: Create LOCAL_PROPERTIES
+        run: echo '${{ secrets.LOCAL_PROPERTIES }}' > ./local.properties
 
       - name: Build with Gradle
-        run: ../gradlew build --warning-mode=none --stacktrace --info
+        run: ./gradlew build
 
       - name: MindWay Android CI success Discord Notification
         uses: sarisia/actions-status-discord@v1
