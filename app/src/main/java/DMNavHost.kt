@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import view.login.navigation.loginScreen
 import view.login.screen.LoginScreen
 
 @Composable
@@ -16,7 +17,9 @@ fun DMNavHost(
 
     NavHost(navController = navController,
         startDestination =startDestination ){
-
+        loginScreen (
+            navigateToHome = {navController}
+        )
 
 
     }

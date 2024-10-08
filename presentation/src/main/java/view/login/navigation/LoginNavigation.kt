@@ -10,7 +10,7 @@ import view.login.screen.LoginScreen
 
 const val loginRoute = "login_route"
 
-fun NavController.navigationToLogin() {
+fun NavController.navigateToLogin() {
     this.navigate(loginRoute)
 }
 
