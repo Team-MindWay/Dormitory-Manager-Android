@@ -8,7 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,8 +32,13 @@ import view.login.component.DomaGathbutton
 fun LoginScreen(
     modifier: Modifier = Modifier,
 
+    navigateToHome: () -> Unit
+
 
 ) {
+    var isClicked by remember {
+        mutableStateOf(false)
+    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -85,8 +95,12 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                DomaGathbutton {
-
+                DomaGathbutton(){
+                    isClicked=true }
+                Button(
+                    onClick = { navigateToHome }
+                ){
+                    Text(text = "button")
                 }
             }
         }
@@ -96,6 +110,8 @@ fun LoginScreen(
 @Preview
 @Composable
 fun PreviewLoginScreen() {
-    LoginScreen()
+    LoginScreen(
+        navigateToHome = {}
+    )
 }
 
