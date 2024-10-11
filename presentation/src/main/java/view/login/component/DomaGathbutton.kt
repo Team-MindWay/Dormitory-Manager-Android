@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kim.presentation.component.modifier.clickablesingle
 
 @Composable
  fun DomaGathbutton (
@@ -23,19 +24,20 @@ import androidx.compose.ui.unit.sp
 
  ){
     Row(
-        modifier = Modifier
-            .width(320.dp)
-            .height(52.dp)
-            .background(color = Color(0xFF494949), shape = RoundedCornerShape(size = 10.dp))
-            .padding(start = 133.dp, top = 13.dp, end = 133.dp, bottom = 13.dp)
-            .clickable(onClick = onClick),
         horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
-    )
+        modifier = Modifier
+            .width(320.dp)
+            .clickablesingle(onClick=onClick)
+            .height(52.dp)
+            .background(color = Color(0xFF494949), shape = RoundedCornerShape(size = 10.dp))
+            .padding(start = 133.dp, top = 13.dp, end = 133.dp, bottom = 13.dp),
 
 
-        {
-            Text(
+
+
+
+    ){ Text(
 
                 text = "Ganth",
                 style = TextStyle(
@@ -47,7 +49,7 @@ import androidx.compose.ui.unit.sp
             )
 
 
-        }
+    }
 
 
 }

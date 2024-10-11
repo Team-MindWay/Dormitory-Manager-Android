@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,9 +37,7 @@ fun LoginScreen(
 
 
 ) {
-    var isClicked by remember {
-        mutableStateOf(false)
-    }
+
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -95,13 +94,10 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                DomaGathbutton(){
-                    isClicked=true }
-                Button(
-                    onClick = { navigateToHome }
-                ){
-                    Text(text = "button")
-                }
+                DomaGathbutton(onClick = navigateToHome)
+
+
+
             }
         }
     }

@@ -9,7 +9,7 @@ import androidx.compose.ui.composed
 
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
-fun Modifier.clickable(
+fun Modifier.clickablesingle(
     enabled: Boolean = true,
     onClick: () -> Unit
 ) = composed {
