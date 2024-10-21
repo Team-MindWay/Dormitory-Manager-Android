@@ -11,13 +11,9 @@ android {
     defaultConfig {
 
         minSdk = ProjectProperties.Versions.MIN_SDK
-        targetSdk = ProjectProperties.Versions.TARGET_SDK
-
 
         testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles(ProjectProperties.Files.CONSUMER_PROGUARD_FILES)
     }
 
     buildTypes {
@@ -34,19 +30,11 @@ android {
         sourceCompatibility = ProjectProperties.Versions.JAVA_VERSION
         targetCompatibility = ProjectProperties.Versions.JAVA_VERSION
     }
-    kotlinOptions {
-        jvmTarget =  ProjectProperties.Versions.JVM_TARGET
-    }
     buildFeatures {
         buildConfig = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = ProjectProperties.Versions.KOTLIN_COMPILER_EXTENSION
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+    kotlinOptions {
+        jvmTarget = ProjectProperties.Versions.JVM_TARGET
     }
 }
 
