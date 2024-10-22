@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import view.Mypage.navigation.MainScreen
+import view.Mypage.navigation.MyScreen
 import view.Mypage.navigation.navgationTomypage
 import view.login.navigation.loginScreen
 import view.login.screen.LoginScreen
@@ -24,7 +24,7 @@ fun DMNavHost(
             navigateToHome = {navController}
         )
 
-        MainScreen(
+        MyScreen(
             navgationTomypage = navController::popBackStack
 
         )
