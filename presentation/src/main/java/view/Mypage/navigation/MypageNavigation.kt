@@ -14,10 +14,10 @@ fun NavController.navgationTomypage(){
 
 
 
-fun NavGraphBuilder.MainScreen(
+fun NavGraphBuilder.MyScreen(
     navgationTomypage: () -> Unit
 ){
     composable(Mypage_loute){
-        Mypage_loute(navgationTomypage=navgationTomypage)
+        MyScreen(navgationTomypage=navgationTomypage)
     }
 }
