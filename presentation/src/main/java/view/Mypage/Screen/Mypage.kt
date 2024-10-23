@@ -27,7 +27,9 @@ import view.Mypage.component.Myclean
 
 @Composable
 fun Mypage(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navgationTomypage: () -> Unit
+
 ){
 
     Column(
@@ -144,5 +146,5 @@ fun Mypage(
 @Composable
 @Preview
 fun PreviewMypage(){
-    Mypage()
+    Mypage(navgationTomypage = {})
 }
