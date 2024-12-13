@@ -16,21 +16,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val gAuthLoginUseCase: GAuthLoginUseCase,
-    private val saveTokenUseCase: SaveTokenUseCase
+    private val gAuthLoginUseCase: GAuthLoginUseCase, private val saveTokenUseCase: SaveTokenUseCase
 ) : ViewModel() {
     private val _saveTokenUiState = MutableStateFlow<SaveTokenUiState>(SaveTokenUiState.Loading)
     internal val saveTokenUiState = _saveTokenUiState.asStateFlow()
     fun gAuthLogin(
-        code: String,
-        onSuccess: () -> Unit
+        code: String, onSuccess: () -> Unit
     ) = viewModelScope.launch {
-        gAuthLoginUseCase(GAuthLoginRequestBodyModel(code = code))
-            .onSuccess {
+        gAuthLoginUseCase(GAuthLoginRequestBodyModel(code = code)).onSuccess {
                 it.collect { result ->
                     saveToken(
-                        data = result,
-                        onSuccess = onSuccess
+                        data = result, onSuccess = onSuccess
 
                     )
                 }
@@ -38,18 +34,14 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun saveToken(
-        data: GAuthLoginResponseModel,
-        onSuccess: () -> Unit
+        data: GAuthLoginResponseModel, onSuccess: () -> Unit
     ) = viewModelScope.launch {
-        _saveTokenUiState.value=SaveTokenUiState.Loading
-        saveTokenUseCase(data = data)
-            .onSuccess {
+        _saveTokenUiState.value = SaveTokenUiState.Loading
+        saveTokenUseCase(data = data).onSuccess {
                 _saveTokenUiState.value = SaveTokenUiState.Success
                 onSuccess()
-
-            }
-            .onFailure {
-                _saveTokenUiState.value= SaveTokenUiState.Error(it)
+            }.onFailure {
+                _saveTokenUiState.value = SaveTokenUiState.Error(it)
             }
     }
 
