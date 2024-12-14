@@ -27,7 +27,6 @@ class AuthViewModel @Inject constructor(
     internal val saveTokenUiState = _saveTokenUiState.asStateFlow()
     fun gAuthLogin(
         code: String,
-        onSuccess: () -> Unit
     ) = viewModelScope.launch {
         _loginUiState.value = LoginUiState.Loading
         gAuthLoginUseCase(GAuthLoginRequestBodyModel(code = code))
@@ -36,7 +35,6 @@ class AuthViewModel @Inject constructor(
                 it.collect { result ->
                     saveToken(
                         data = result,
-                        onSuccess = onSuccess
                     )
                 }
             }.onFailure {
@@ -46,13 +44,11 @@ class AuthViewModel @Inject constructor(
 
     private fun saveToken(
         data: GAuthLoginResponseModel,
-        onSuccess: () -> Unit
     ) = viewModelScope.launch {
         _saveTokenUiState.value = SaveTokenUiState.Loading
         saveTokenUseCase(data = data)
             .onSuccess {
             _saveTokenUiState.value = SaveTokenUiState.Success
-            onSuccess()
         }.onFailure {
                 _saveTokenUiState.value = SaveTokenUiState.Error(it)
             }
