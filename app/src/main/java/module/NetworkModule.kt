@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import remote.api.auth.AuthApi
+import remote.api.auth.UsersAPi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
@@ -74,5 +75,10 @@ object NetworkModule {
     @Singleton
     fun provideAuthAPi(retrofit: Retrofit): AuthApi{
         return retrofit.create(AuthApi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideUserAPi(retrofit: Retrofit): UsersAPi{
+        return retrofit.create(UsersAPi::class.java)
     }
 }
