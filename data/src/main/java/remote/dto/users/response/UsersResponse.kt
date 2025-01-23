@@ -2,9 +2,7 @@ package remote.dto.users.response
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import model.myrank.response.MyRankResponseModel
 import model.users.response.UsersResponseModel
-import remote.dto.myrank.response.MyRankResponse
 import java.util.UUID
 
 @JsonClass(generateAdapter = true)
