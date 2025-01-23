@@ -62,7 +62,6 @@ dependencies {
     implementation(Dependency.Compose.COMPOSE_MATERIAL3)
     implementation(Dependency.Compose.COMPOSE_MATERIAL)
     implementation(Dependency.Compose.COMPOSE_NAVIGATION)
-    implementation(libs.lifecycle.viewmodel.android)
     debugImplementation(Dependency.Compose.COMPOSE_TOOLING)
 
     implementation(Dependency.Hilt.HILT)
