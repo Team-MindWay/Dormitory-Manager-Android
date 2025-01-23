@@ -25,7 +25,7 @@ class AuthViewModel @Inject constructor(
 
     private val _saveTokenUiState = MutableStateFlow<SaveTokenUiState>(SaveTokenUiState.Loading)
     internal val saveTokenUiState = _saveTokenUiState.asStateFlow()
-    fun gAuthLogin(
+    internal fun gAuthLogin(
         code: String,
     ) = viewModelScope.launch {
         _loginUiState.value = LoginUiState.Loading
@@ -38,7 +38,8 @@ class AuthViewModel @Inject constructor(
                     )
                 }
             }.onFailure {
-                _loginUiState.value = LoginUiState.Error(it)
+                    exception ->
+                _loginUiState.value = LoginUiState.Error(exception)
             }
     }
 
@@ -48,9 +49,9 @@ class AuthViewModel @Inject constructor(
         _saveTokenUiState.value = SaveTokenUiState.Loading
         saveTokenUseCase(data = data)
             .onSuccess {
-            _saveTokenUiState.value = SaveTokenUiState.Success
-        }.onFailure {
-                _saveTokenUiState.value = SaveTokenUiState.Error(it)
+                _saveTokenUiState.value = SaveTokenUiState.Success
+            }.onFailure { exception ->
+                _saveTokenUiState.value = SaveTokenUiState.Error(exception)
             }
     }
 
