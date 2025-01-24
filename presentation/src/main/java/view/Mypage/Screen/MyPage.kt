@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import model.demerit.response.DemeritResponseModel
+import model.users.response.UsersResponseModel
 import view.Mypage.component.DemeritList
 import view.Mypage.component.MyDemeritList
 import view.Mypage.component.MyClean
@@ -28,7 +28,7 @@ import java.util.UUID
 @Composable
 fun MyPage(
     modifier: Modifier = Modifier,
-    data: DemeritResponseModel
+    data:UsersResponseModel
 
     ) {
     Column(
@@ -83,7 +83,7 @@ fun MyPage(
             ) {
                 MyClean(
                     modifier = modifier,
-                    data.toDayClean,
+                    data.todayClean,
                     data.penaltyPoint,
                     data.cleanPoint,
                     )
@@ -99,7 +99,7 @@ fun MyPage(
                 MyDemeritList(
                     modifier = modifier,
                     data.myBecause,
-                    data.myPointList,
+                    data.penaltyPoint,
                 )
             }
             Column(
@@ -123,19 +123,18 @@ fun MyPage(
 @Preview
 fun PreviewMyPage() {
     MyPage(
-        data = DemeritResponseModel(
+        data = UsersResponseModel(
             because = "노트북",
             cleanPoint = 3,
             myBecause = "노트북",
-            myPointList = 3,
+            pointList = 3,
             name = "이산",
             penaltyPoint = 1,
-            pointList = 1,
-            penaltyList = 2,
-            toDayClean = "3층 화장실",
+            todayClean = "화장실",
             userId = UUID.randomUUID(),
 
 
-        )
+
+            )
     )
 }

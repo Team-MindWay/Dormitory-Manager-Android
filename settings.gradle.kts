@@ -19,7 +19,7 @@ dependencyResolutionManagement {
         maven ( url = "https://jitpack.io" )
     }
 }
-
+gradle.startParameter.excludedTaskNames.addAll(listOf(":buildSrc:testClasses"))
 rootProject.name = "Dormitorymanager"
 include(":app")
 include(":data")
