@@ -98,7 +98,7 @@ fun MyPage(
             ) {
                 MyDemeritList(
                     modifier = modifier,
-                    data.Mybecause,
+                    data.myBecause,
                     data.penaltyPoint,
                 )
             }
@@ -112,7 +112,7 @@ fun MyPage(
                 DemeritList(
                     modifier = modifier,
                     data.because,
-                    data.PointList,
+                    data.pointList,
                 )
             }
         }
@@ -126,8 +126,8 @@ fun PreviewMyPage() {
         data = UsersResponseModel(
             because = "노트북",
             cleanPoint = 3,
-            Mybecause = "노트북",
-            PointList = 3,
+            myBecause = "노트북",
+            pointList = 3,
             name = "이산",
             penaltyPoint = 1,
             todayClean = "화장실",
