@@ -10,7 +10,6 @@ class UsersDataSourceImpl @Inject constructor(
     private val usersService: UsersAPi
 ): UsersDataSource
 {
-
     override fun getUsers(): Flow<List<UsersResponse>> =
         performApiRequest { usersService.getUsers() }
 }
