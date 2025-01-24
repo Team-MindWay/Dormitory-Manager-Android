@@ -15,7 +15,6 @@ data class UsersResponse (
     @Json(name = "myBecause") val myBecause: String,
     @Json(name = "because") val because: String,
     @Json(name = "Point-List") val pointList: Int,
-
 )
 
 fun UsersResponse.toModel() = UsersResponseModel(
@@ -27,5 +26,4 @@ fun UsersResponse.toModel() = UsersResponseModel(
     myBecause = myBecause,
     because = because,
     pointList = pointList
-
 )
