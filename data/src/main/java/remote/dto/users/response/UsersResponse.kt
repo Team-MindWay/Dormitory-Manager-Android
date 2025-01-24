@@ -12,9 +12,9 @@ data class UsersResponse (
     @Json(name = "to-day-Clean") val todayClean: String,
     @Json(name = "name") val name: String,
     @Json(name = "penalty-Point") val penaltyPoint: Int,
-    @Json(name = "Mybecause") val Mybecause: String,
+    @Json(name = "myBecause") val myBecause: String,
     @Json(name = "because") val because: String,
-    @Json(name = "Point-List") val PointList: Int,
+    @Json(name = "Point-List") val pointList: Int,
 
 )
 
@@ -24,8 +24,8 @@ fun UsersResponse.toModel() = UsersResponseModel(
     todayClean = todayClean,
     name = name,
     penaltyPoint = penaltyPoint,
-    Mybecause = Mybecause,
+    myBecause = myBecause,
     because = because,
-    PointList = PointList
+    pointList = pointList
 
 )
