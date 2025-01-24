@@ -8,7 +8,7 @@ data class UsersResponseModel (
      val todayClean: String,
      val name: String,
      val penaltyPoint: Int,
-     val Mybecause: String,
+     val myBecause: String,
      val because: String,
-     val PointList: Int,
+     val pointList: Int,
 )
