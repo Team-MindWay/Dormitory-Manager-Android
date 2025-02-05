@@ -1,4 +1,4 @@
-package viewModel.login.uiState
+package viewmodel.login.uistate
 
 sealed interface SaveTokenUiState {
     object Loading : SaveTokenUiState

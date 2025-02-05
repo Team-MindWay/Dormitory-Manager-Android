@@ -11,8 +11,8 @@ import model.auth.request.GAuthLoginRequestBodyModel
 import model.auth.response.GAuthLoginResponseModel
 import usecase.auth.GAuthLoginUseCase
 import usecase.auth.SaveTokenUseCase
-import viewModel.login.uiState.LoginUiState
-import viewModel.login.uiState.SaveTokenUiState
+import viewmodel.login.uistate.LoginUiState
+import viewmodel.login.uistate.SaveTokenUiState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -54,6 +54,4 @@ class AuthViewModel @Inject constructor(
                 _saveTokenUiState.value = SaveTokenUiState.Error(exception)
             }
     }
-
-
 }

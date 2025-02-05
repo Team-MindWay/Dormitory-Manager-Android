@@ -1,16 +1,18 @@
-package viewModel.users
+package viewmodel.users
 
 import Untill.Result
 import Untill.asResult
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import usecase.Users.GetUsersUseCase
-import viewModel.UIstate.UsersUiState
+import viewmodel.users.uistate.UsersUiState
+
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,11 +39,10 @@ class UsersViewModel @Inject constructor(
                         if (result.data.isEmpty()) {
                             _usersUiState.value = UsersUiState.Empty
                         } else {
-                            _usersUiState.value = UsersUiState.Success(result.data)
+                            _usersUiState.value = UsersUiState.Success(result.data.toImmutableList())
                         }
                     }
                 }
             }
     }
 }
-
