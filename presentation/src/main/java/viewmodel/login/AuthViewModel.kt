@@ -54,6 +54,4 @@ class AuthViewModel @Inject constructor(
                 _saveTokenUiState.value = SaveTokenUiState.Error(exception)
             }
     }
-
-
 }
