@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="stringResource">%s: %d</string>
-    <string name="CleanResource">%d회</string>
-    <string name="DemeritList">%s - %d회</string>
-    <string name="Rank">%d등</string>
+    <string name="stringResource">%1$s: %2$d</string>
+    <string name="CleanResource">%1$d회</string>
+    <string name="DemeritList">%1$s - %2$d회</string>
+    <string name="Rank">%1$d등</string>
 </resources>
