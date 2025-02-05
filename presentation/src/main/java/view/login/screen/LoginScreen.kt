@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,24 +23,75 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.msg.gauthsignin.GAuthSigninWebView
 import view.login.component.DoMaGAthButton
+import viewmodel.login.AuthViewModel
+import viewmodel.login.uistate.LoginUiState
+import viewmodel.login.uistate.SaveTokenUiState
 
 @Composable
 internal fun LoginRoute(
-    navigateToHome: () -> Unit,
     modifier: Modifier = Modifier,
+    navigateToHome: () -> Unit,
+    authViewModel: AuthViewModel = hiltViewModel(),
 ) {
-    //구현할 예정입니다.
+    val saveTokenUiState by authViewModel.saveTokenUiState.collectAsStateWithLifecycle()
+    val loginUiState by authViewModel.loginUiState.collectAsStateWithLifecycle()
+    val (ClickButton, leIsClickLoginButton) = rememberSaveable { mutableStateOf(false) }
+
+    LoginScreen(
+        modifier = modifier,
+        ClickButton = ClickButton,
+        loginUiState = loginUiState,
+        saveTokenUiState = saveTokenUiState,
+        onErrorToast = { throwable, message ->  },
+        navigateToHome = navigateToHome,
+        gAuthLogin = { code -> authViewModel.gAuthLogin(code = code)  },
+        leIsClickLoginButton = {leIsClickLoginButton(!ClickButton)}
+
+    )
 }
+
+
+
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    ClickButton: () -> Unit,
-    navigateToHome: () -> Unit
+    ClickButton: Boolean,
+    loginUiState: LoginUiState,
+    leIsClickLoginButton: () -> Unit,
+    gAuthLogin: (String) -> Unit,
+    navigateToHome: () -> Unit,
+    saveTokenUiState: SaveTokenUiState,
+    onErrorToast: (throwable: Throwable?, message: Int?) -> Unit
 
-    ) {
-    Column(
+) {
+
+    when (loginUiState) {
+        is LoginUiState.Loading -> Unit
+        is LoginUiState.Success -> {
+            when (saveTokenUiState) {
+                is SaveTokenUiState.Success -> {
+                    navigateToHome()
+                }
+
+                is SaveTokenUiState.Error -> {
+                    onErrorToast(saveTokenUiState.exception, 0)
+                }
+
+                is SaveTokenUiState.Loading -> Unit
+            }
+        }
+
+        is LoginUiState.Error -> {
+            onErrorToast(loginUiState.exception, 0)
+
+        }
+    }
+    Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modifier
@@ -84,7 +138,15 @@ fun LoginScreen(
                     ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    DoMaGAthButton(onClick = ClickButton)
+                    DoMaGAthButton(onClick = leIsClickLoginButton)
+                }
+            }
+            if (ClickButton){
+                GAuthSigninWebView(
+                    clientId = "ghskfend",
+                    redirectUri = "ghskfen"
+                ){
+                        code -> gAuthLogin(code)
                 }
             }
         }
@@ -95,6 +157,13 @@ fun LoginScreen(
 @Preview
 @Composable
 fun PreviewLoginScreen() {
-    LoginScreen(ClickButton = {}, navigateToHome = {})
+    LoginScreen(
+        ClickButton = false,
+        navigateToHome = {},
+        onErrorToast = { _, _ -> },
+        saveTokenUiState = SaveTokenUiState.Loading,
+        loginUiState = LoginUiState.Loading,
+        gAuthLogin = {},
+        leIsClickLoginButton = {}
+    )
 }
-
