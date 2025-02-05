@@ -7,3 +7,5 @@ plugins {
     id(Dependency.Google.GOOGLE_SERVICES_PLUGIN) version Versions.GOOGLE_SERVICE_PLUGIN apply false
     id(Dependency.Gradle.KSP) version Versions.KSP apply false
 }
+
+
