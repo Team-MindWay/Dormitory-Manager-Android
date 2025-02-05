@@ -33,7 +33,6 @@ object Dependency {
 
         const val GOOGLE_SERVICES_PLUGIN = "com.google.gms.google-services"
 
-
         const val SWIPE_REFRESH ="com.google.accompanist:accompanist-swiperefresh:${Versions.SWIPE_REFRESH}"
     }
 
