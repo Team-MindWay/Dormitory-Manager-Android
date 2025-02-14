@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import remote.datasource.GAuthDataSource
+import remote.datasource.admin.AdminDataSource
+import remote.datasource.admin.AdminDataSourceImpl
 import remote.datasource.homes.HomesDataSource
 import remote.datasource.homes.HomesDataSourceImpl
 import remote.datasource.users.UsersDataSource
@@ -26,4 +28,8 @@ abstract class RemoteDataSourceModule {
     abstract fun provideHomeDatasource(
         homeDataSourceImpl: HomesDataSourceImpl
     ): HomesDataSource
+    @Binds
+    abstract fun proviedAdminDatasource(
+        adminDataSourceImpl: AdminDataSourceImpl
+    ): AdminDataSource
 }
