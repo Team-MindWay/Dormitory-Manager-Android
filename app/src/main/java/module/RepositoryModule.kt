@@ -4,8 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import reopoistory.AdminRepository
 import reopoistory.HomesRepository
 import reopoistory.UsersRepository
+import repoistory.AdminRepositoryImpl
 import repository.AuthRepository
 import repoistory.AuthRepositoryImpl
 import repoistory.HomeRepositoryImpl
@@ -26,6 +28,10 @@ abstract class RepositoryModule {
     abstract fun providerHomeRepository(
         homeRepositoryImpl: HomeRepositoryImpl
     ): HomesRepository
+    @Binds
+    abstract fun providerAdminRepository(
+        adminRepositoryImpl: AdminRepositoryImpl
+    ): AdminRepository
 
 
 }
