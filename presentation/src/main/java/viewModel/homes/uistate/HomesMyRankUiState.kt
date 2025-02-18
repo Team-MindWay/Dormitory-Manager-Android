@@ -6,5 +6,5 @@ sealed interface HomesMyRankUiState {
     object Loading : HomesMyRankUiState
     object Empty : HomesMyRankUiState
     data class Success(val data: MyRankResponseModel) : HomesMyRankUiState
-    object Fail : HomesMyRankUiState
+    data class Fail(val throwable: Throwable?, val message: Int?) : HomesMyRankUiState
 }
