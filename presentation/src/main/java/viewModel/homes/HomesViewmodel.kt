@@ -36,7 +36,8 @@ class HomesViewModel @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        _homesUiState.value = HomesUiState.Fail
+                        _homesUiState.value = HomesUiState.Fail(result.exception)
+
                     }
 
                     is Result.Success -> {
@@ -57,7 +58,7 @@ class HomesViewModel @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        _homesMyRankUiState.value = HomesMyRankUiState.Fail
+                        _homesMyRankUiState.value = HomesMyRankUiState.Fail(result.exception,null)
                     }
 
                     is Result.Success -> {
