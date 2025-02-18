@@ -20,13 +20,46 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kim.presentation.R
+import model.myrank.response.MyRankResponseModel
 import model.rank.response.RankResponseModel
+import viewmodel.homes.uistate.HomesMyRankUiState
 import java.util.UUID
+@Composable
+internal fun MyRanking(
+    modifier: Modifier = Modifier,
+    homesMyRankUiState: HomesMyRankUiState,
+    onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
+
+){
+    when(homesMyRankUiState){
+        HomesMyRankUiState.Loading -> {
+            Text(text = "로딩중")
+        }
+        is HomesMyRankUiState.Success -> {
+            val data = homesMyRankUiState.data
+            MyRankingComponent(
+                modifier = modifier,
+                data = data
+            )
+        }
+        is HomesMyRankUiState.Fail -> {
+            onErrorToast(homesMyRankUiState.throwable,R.string.error)
+
+        }
+        is HomesMyRankUiState.Empty -> {
+
+        }
+    }
+
+}
+
+
+
 
 @Composable
 fun MyRankingComponent(
     modifier: Modifier = Modifier,
-    rank: Int
+    data: MyRankResponseModel
 ) {
     Column(
         modifier = modifier
@@ -55,7 +88,7 @@ fun MyRankingComponent(
             Text(
                 text = stringResource(
                     R.string.Rank,
-                    rank
+                    data.rank
             ),
                 style = TextStyle(
                     fontSize = 20.sp,
@@ -70,8 +103,5 @@ fun MyRankingComponent(
 @Composable
 @Preview
 fun PreviewMyRankingComponent() {
-    MyRankingComponent(
-        rank = 3
 
-    )
 }
