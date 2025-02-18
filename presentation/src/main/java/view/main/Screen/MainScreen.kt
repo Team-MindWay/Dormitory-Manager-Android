@@ -69,8 +69,8 @@ fun MainScreen(
 
 ) {
     LaunchedEffect(Unit) {
-        myRankCallBack
-        rankListCallBack
+        myRankCallBack()
+        rankListCallBack()
     }
 
 
