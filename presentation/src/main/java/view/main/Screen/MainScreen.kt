@@ -1,5 +1,6 @@
 package view.main.Screen
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,29 +11,69 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import model.rank.response.RankResponseModel
-import view.main.component.MyRankingComponent
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import view.main.component.MyPageButton
+import view.main.component.MyRanking
+import view.main.component.RankingList
 import view.main.component.TimeComponent
-import java.util.UUID
+import viewmodel.homes.HomesViewModel
+import viewmodel.homes.uistate.HomesMyRankUiState
+import viewmodel.homes.uistate.HomesUiState
+
+@Composable
+internal fun MainRoute(
+    navigateToBack: () -> Unit,
+    onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
+    viewModel: HomesViewModel = hiltViewModel(LocalContext.current as ComponentActivity)
+) {
+    val homesUiState by viewModel.homesUiState.collectAsStateWithLifecycle()
+    val homesMyRankUiState by viewModel.homesMyRankUiState.collectAsStateWithLifecycle()
+
+
+    MainScreen(
+        homesUiState = homesUiState,
+        rankListCallBack = viewModel::getRank,
+        homesMyRankUiState = homesMyRankUiState,
+        onErrorToast = onErrorToast,
+        navigateToBack = navigateToBack,
+        myRankCallBack = viewModel::getMyRank,
+    )
+
+
+}
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    rank: Int,
+    homesUiState: HomesUiState,
+    myRankCallBack: () -> Unit,
+    rankListCallBack: () -> Unit,
+    homesMyRankUiState: HomesMyRankUiState,
+    onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
+    navigateToBack: () -> Unit
+
 ) {
+    LaunchedEffect(Unit) {
+        myRankCallBack
+        rankListCallBack
+    }
+
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -40,16 +81,6 @@ fun MainScreen(
         verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 316.dp, top = 4.dp, end = 10.dp, bottom = 4.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
-            verticalAlignment = Alignment.CenterVertically,
-
-            ) {
-            MyPageButton() {}
-        }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -70,14 +101,15 @@ fun MainScreen(
             horizontalAlignment = Alignment.Start,
 
             ) {
-            MyRankingComponent(
-                rank = rank,
+            MyRanking(
+                homesMyRankUiState = homesMyRankUiState,
+                onErrorToast = onErrorToast
             )
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp,),
+                .padding(horizontal = 20.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
             verticalAlignment = Alignment.CenterVertically,
 
@@ -137,16 +169,10 @@ fun MainScreen(
                         )
                     )
                 }
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp,),
-                    verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Top),
-                    horizontalAlignment = Alignment.Start,
-
-                    ) {
-                    //item  viewmodel 한 후 구현 하겠습니다.
-                }
+                RankingList(
+                    homeUiState = homesUiState,
+                    onErrorToast = onErrorToast
+                )
             }
         }
     }
@@ -157,6 +183,12 @@ fun MainScreen(
 @Preview
 fun PreviewMainScreen() {
     MainScreen(
-        rank = 1,
+        homesUiState = HomesUiState.Loading,
+        rankListCallBack = {},
+        homesMyRankUiState = HomesMyRankUiState.Loading,
+        onErrorToast = { _, _ -> },
+        navigateToBack = {},
+        myRankCallBack = {},
+
     )
 }
