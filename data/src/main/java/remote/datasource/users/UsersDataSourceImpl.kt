@@ -13,6 +13,6 @@ class UsersDataSourceImpl @Inject constructor(
 {
     override fun getUsers(
         userId: UUID
-    ): Flow<List<UsersResponse>> =
+    ): Flow<UsersResponse> =
         performApiRequest { usersService.getUsers( userId = userId) }
 }
