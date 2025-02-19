@@ -1,0 +1,117 @@
+package view.signin.screen
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.msg.gauthsignin.GAuthSigninWebView
+import view.signin.component.DoMaLoginButton
+import view.theme.DoMaTypography
+
+@Composable
+fun SignInScreen(
+    modifier: Modifier = Modifier,
+    ClickButton: Boolean,
+    gAuthLogin: (String) -> Unit,
+    leIsClickLoginButton: () -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = Color(0xFF1E1E1E))
+    ) {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                .weight(1f),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Bottom
+        ) {
+            Text(
+                text = "안녕하세요!",
+                style = DoMaTypography.headlineSmall.copy(color = Color(0xFFFFFFFF)),
+                textAlign = TextAlign.Start,
+            )
+            Text(
+                text = AnnotatedString.Builder("로그인을 해볼까요?").apply {
+                    addStyle(
+                        style = SpanStyle(color = Color(0xFF9BFFA6)), start = 0, end = 4
+                    )
+                }.toAnnotatedString(),
+                style = DoMaTypography.bodyLarge.copy(color = Color(0xFFFAFAFA)),
+                textAlign = TextAlign.Start,
+            )
+        }
+
+        DoMaLoginButton(
+            onClick = leIsClickLoginButton,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 10.dp)
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp),
+        ) {
+            Text(
+                text = "아이디 찾기",
+                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+            )
+            Text(
+                text = "|",
+                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+            )
+            Text(
+                text = "비밀번호 찾기",
+                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+            )
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom
+        ) {
+            Text(
+                text = "아직 함께하지 못했다면? 회원가입 하기",
+                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+                textAlign = TextAlign.Center
+            )
+        }
+
+        if (ClickButton) {
+            GAuthSigninWebView(
+                clientId = "ghskfend",
+                redirectUri = "ghskfen"
+            ) { code ->
+                gAuthLogin(code)
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewSignInScreen() {
+    SignInScreen(
+        ClickButton = false,
+        gAuthLogin = {},
+        leIsClickLoginButton = {}
+    )
+}
