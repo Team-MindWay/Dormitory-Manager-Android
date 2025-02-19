@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import remote.api.auth.AdminAPI
 import remote.api.auth.AuthApi
 import remote.api.auth.HomeApi
 import remote.api.auth.UsersAPi
@@ -89,6 +90,12 @@ object NetworkModule {
     @Singleton
     fun provideHomeAPi(retrofit: Retrofit): HomeApi {
         return retrofit.create(HomeApi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideAdminAPi(retrofit: Retrofit): AdminAPI {
+        return retrofit.create(AdminAPI::class.java)
+
     }
 
 }
