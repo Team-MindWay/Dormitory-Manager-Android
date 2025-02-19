@@ -13,7 +13,6 @@ class UsersRepositoryImpl @Inject constructor(
     private val usersDataSource: UsersDataSource
 ): UsersRepository {
 
-    override suspend fun getUsers(userId: UUID): Flow<List<UsersResponseModel>> {
-        return usersDataSource.getUsers(userId = userId).map { list -> list.map { it.toModel() } }
+    override suspend fun getUsers(userId: UUID): Flow<UsersResponseModel> {
+        return usersDataSource.getUsers(userId = userId).map { it.toModel() } }
     }
-}
