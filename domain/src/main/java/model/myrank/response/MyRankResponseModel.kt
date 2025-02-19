@@ -8,4 +8,5 @@ data class MyRankResponseModel(
     val name: String,
     val penaltyPoint: Int,
     val profileImage: String,
+    val roomNum: Int,
 )
