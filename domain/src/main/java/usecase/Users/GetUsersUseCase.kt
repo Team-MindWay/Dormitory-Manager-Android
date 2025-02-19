@@ -9,6 +9,6 @@ import javax.inject.Inject
 class GetUsersUseCase @Inject constructor(
     private val usersRepository: UsersRepository
 ){
-    suspend operator fun invoke(userId: UUID): Flow<List<UsersResponseModel>> =
+    suspend operator fun invoke(userId: UUID): Flow<UsersResponseModel> =
         usersRepository.getUsers(userId = userId)
 }
