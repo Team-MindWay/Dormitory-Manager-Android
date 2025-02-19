@@ -9,7 +9,7 @@ interface UsersAPi {
     @GET("/{user_id}/profile")
     suspend fun getUsers(
         @Path("user_id") userId: UUID
-    ): List<UsersResponse>
+    ): UsersResponse
 
 
 
