@@ -35,15 +35,11 @@ class UsersViewModel @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        _usersUiState.value = UsersUiState.Fail
+                        _usersUiState.value = UsersUiState.Fail(result.exception)
                     }
 
                     is Result.Success -> {
-                        if (result.data.isEmpty()) {
-                            _usersUiState.value = UsersUiState.Empty
-                        } else {
-                            _usersUiState.value = UsersUiState.Success(result.data.toImmutableList())
-                        }
+                        _usersUiState.value = UsersUiState.Success(result.data)
                     }
                 }
             }
