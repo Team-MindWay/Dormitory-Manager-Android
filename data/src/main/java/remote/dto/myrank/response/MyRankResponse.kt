@@ -11,6 +11,7 @@ data class MyRankResponse (
     @Json(name = "userId") val userId: UUID,
     @Json(name = "rank") val rank: Int,
     @Json(name = "profileImage") val profileImage: String,
+    @Json(name = "roomNum") val roomNum: Int,
     @Json(name = "name") val name: String,
     @Json(name = "penaltyPoint") val penaltyPoint: Int,
 )
@@ -21,6 +22,7 @@ fun MyRankResponse.toModel() = MyRankResponseModel(
     rank = rank,
     profileImage = profileImage,
     name = name,
-    penaltyPoint = penaltyPoint
+    penaltyPoint = penaltyPoint,
+    roomNum = roomNum
 )
 

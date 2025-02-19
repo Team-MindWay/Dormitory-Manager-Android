@@ -139,12 +139,9 @@ internal fun RankingListItem(
                     data = data
                 )
             }
-
         }
-
     }
 }
-
 
 @Composable
 @Preview
@@ -154,9 +151,8 @@ fun PreviewRankingComponent() {
             rank = 3,
             name = "김재관",
             penaltyPoint = 5,
-            userId = UUID.randomUUID()
+            userId = UUID.randomUUID(),
+            roomNum = 3
         )
-
-
     )
 }

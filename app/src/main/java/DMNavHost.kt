@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import view.Mypage.navigation.MyScreen
-import view.Mypage.navigation.navGationToMyPage
 import view.login.navigation.LoginScreen
 import view.login.navigation.navigateToLogin
 
@@ -20,11 +19,15 @@ fun DMNavHost(
     startDestination: String
 ){
 
+
     NavHost(navController = navController,
         startDestination =startDestination ){
         LoginScreen(navigateToHome = navController::navigateToLogin)
 
 
-        MyScreen(navGationToMyPage = navController::popBackStack)
+        MyScreen(
+            navigationBack = navController::popBackStack,
+            onErrorToast = { throwable, message ->}
+        )
     }
 }

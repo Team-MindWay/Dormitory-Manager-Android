@@ -6,6 +6,6 @@ import model.users.response.UsersResponseModel
 sealed interface UsersUiState {
     object Loading : UsersUiState
     object Empty : UsersUiState
-    data class Success(val data: ImmutableList<UsersResponseModel>) : UsersUiState
-    object Fail : UsersUiState
+    data class Success(val data: UsersResponseModel) : UsersUiState
+    data class Fail(val exception: Throwable) : UsersUiState
 }
