@@ -10,14 +10,18 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import usecase.homes.GetMyRankUseCase
 import usecase.homes.GetRankUseCase
+import usecase.notice.GetNoticeUseCase
 import viewmodel.homes.uistate.HomesMyRankUiState
 import viewmodel.homes.uistate.HomesUiState
+import viewmodel.homes.uistate.NoticeUiState
+import java.util.UUID
 
 import javax.inject.Inject
 
 class HomesViewModel @Inject constructor(
     private val getRankUseCase: GetRankUseCase,
     private val getMyRankUseCase: GetMyRankUseCase,
+    private val getNoticeUseCase: GetNoticeUseCase
 ) : ViewModel() {
     private val _homesUiState = MutableStateFlow<HomesUiState>(HomesUiState.Loading)
     val homesUiState = _homesUiState.asStateFlow()
@@ -25,7 +29,30 @@ class HomesViewModel @Inject constructor(
     private val _homesMyRankUiState = MutableStateFlow<HomesMyRankUiState>(HomesMyRankUiState.Loading)
     val homesMyRankUiState = _homesMyRankUiState.asStateFlow()
 
+    private val _noticeUiState = MutableStateFlow<NoticeUiState>(NoticeUiState.Loading)
+    val noticeUiState = _noticeUiState.asStateFlow()
 
+
+    fun getNotice(noticeId: UUID) = viewModelScope.launch {
+        getNoticeUseCase(
+            noticeId = noticeId
+        )
+            .asResult()
+            .collectLatest { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        _noticeUiState.value = NoticeUiState.Loading
+                    }
+                    is Result.Error -> {
+                        _noticeUiState.value = NoticeUiState.Fail(result.exception)
+                    }
+                    is Result.Success -> {
+                        _noticeUiState.value = NoticeUiState.Success(result.data)
+                    }
+                }
+
+                }
+    }
     fun getRank() = viewModelScope.launch {
         getRankUseCase()
             .asResult()
