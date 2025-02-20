@@ -1,11 +1,14 @@
 package view.signin.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -75,15 +78,26 @@ fun SignInScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Column(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+
             ) {
                 Text(
-                    text = "아직 함께하지 못했다면? 회원가입 하기",
+                    text = "아직 함께하지 못했다면?",
+                    style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+                )
+
+                Spacer(modifier = Modifier.width(4.dp))
+
+                Text(
+                    text = "회원가입 하기",
+                    modifier = Modifier
+                        .clickable { /* TODO: 회원가입 화면으로 이동 */ }
+                        .semantics { contentDescription = "회원가입 페이지로 이동" },
                     style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                     textAlign = TextAlign.Center
                 )
