@@ -18,7 +18,7 @@ import view.theme.DoMaTypography
 @Composable
 fun SignInSubScreen(
     modifier: Modifier = Modifier,
-    ClickButton: Boolean,
+    clickButton: Boolean,
     gAuthLogin: (String) -> Unit,
     leIsClickLoginButton: () -> Unit,
 ) {
@@ -83,7 +83,7 @@ fun SignInSubScreen(
                     .padding(bottom = 30.dp)
             )
 
-            if (ClickButton) {
+            if (clickButton) {
                 GAuthSigninWebView(
                     clientId = "ghskfend",
                     redirectUri = "ghskfen"
@@ -99,7 +99,7 @@ fun SignInSubScreen(
 @Composable
 fun PreviewSignInSubScreen() {
     SignInSubScreen(
-        ClickButton = false,
+        clickButton = false,
         gAuthLogin = {},
         leIsClickLoginButton = {}
     )
