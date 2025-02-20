@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import view.theme.DoMaAndroidTheme
 import view.theme.DoMaTypography
 
 @Composable
@@ -24,36 +25,39 @@ fun DoMaInputPassword(
 ) {
     val idState = remember { mutableStateOf(TextFieldValue("")) } // viewmodel 구현 후 수정 하겠습니다.
 
-    Column(
-        modifier = Modifier
-    ) {
-        Text(
-            text = "비밀번호",
-            style = DoMaTypography.bodyMedium.copy(color = Color(0xFFFAFAFA))
-        )
-        Spacer(
-            modifier = Modifier.height(4.dp)
-        )
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value =  idState.value,
-            onValueChange = { idState.value = it },
-            textStyle = DoMaTypography.labelLarge.copy(color = Color.White),
-            shape = RoundedCornerShape(12.dp),
-            singleLine = true,
-            placeholder = {
-                Text(
-                    text = "비밀번호를 입력해주세요.",
-                    style = DoMaTypography.labelLarge.copy(color = Color(0xFF989898))
-                )
-            },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                backgroundColor = Color(0xFF1E1E1E),
-                cursorColor = Color.White,
-                focusedBorderColor = Color(0xFFB9B9B9),
-                unfocusedBorderColor = Color(0xFFB9B9B9)
+    DoMaAndroidTheme { colors, typography ->
+
+        Column(
+            modifier = Modifier
+        ) {
+            Text(
+                text = "비밀번호",
+                style = DoMaTypography.bodyMedium.copy(color = colors.WHITE)
             )
-        )
+            Spacer(
+                modifier = Modifier.height(4.dp)
+            )
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = idState.value,
+                onValueChange = { idState.value = it },
+                textStyle = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+                shape = RoundedCornerShape(12.dp),
+                singleLine = true,
+                placeholder = {
+                    Text(
+                        text = "비밀번호를 입력해주세요.",
+                        style = DoMaTypography.labelLarge.copy(color = colors.silver)
+                    )
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    backgroundColor = Color(0xFF1E1E1E),
+                    cursorColor = Color.White,
+                    focusedBorderColor = Color(0xFFB9B9B9),
+                    unfocusedBorderColor = Color(0xFFB9B9B9)
+                )
+            )
+        }
     }
 }
 
