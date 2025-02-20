@@ -7,7 +7,7 @@ abstract class ColorTheme {
     abstract val Black: Color
     abstract val WHITE: Color
 
-    abstract val GRAY: Color
+    abstract val Green: Color
     abstract val Gold: Color
     abstract val silver: Color
     abstract val Broze: Color
@@ -17,4 +17,6 @@ abstract class ColorTheme {
 
     abstract val CardShadow: Color
     abstract val StatusShadow: Color
+
+    abstract val Background: Color
 }
