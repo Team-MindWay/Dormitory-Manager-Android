@@ -5,10 +5,12 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import reopoistory.HomesRepository
+import reopoistory.NoticeRepository
 import reopoistory.UsersRepository
 import repository.AuthRepository
 import repoistory.AuthRepositoryImpl
 import repoistory.HomeRepositoryImpl
+import repoistory.NoticeRepositoryImpl
 import repoistory.UsersRepositoryImpl
 
 @Module
@@ -26,6 +28,8 @@ abstract class RepositoryModule {
     abstract fun providerHomeRepository(
         homeRepositoryImpl: HomeRepositoryImpl
     ): HomesRepository
-
-
+    @Binds
+    abstract fun providerNoticeRepository(
+        noticeRepositoryImpl: NoticeRepositoryImpl
+    ): NoticeRepository
 }

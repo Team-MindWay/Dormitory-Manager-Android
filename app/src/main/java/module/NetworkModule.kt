@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import remote.api.auth.AuthApi
 import remote.api.auth.HomeApi
+import remote.api.auth.NoticeAPI
 import remote.api.auth.UsersAPi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -90,5 +91,11 @@ object NetworkModule {
     fun provideHomeAPi(retrofit: Retrofit): HomeApi {
         return retrofit.create(HomeApi::class.java)
     }
+    @Provides
+    @Singleton
+    fun provideNoticeApI(retrofit: Retrofit): NoticeAPI{
+        return retrofit.create(NoticeAPI::class.java)
+    }
+
 
 }
