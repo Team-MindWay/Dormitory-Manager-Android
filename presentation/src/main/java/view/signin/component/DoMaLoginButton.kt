@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kim.presentation.component.modifier.clickablesingle
+import view.theme.DoMaAndroidTheme
 
 @Stable
 @Composable
@@ -22,6 +23,8 @@ fun DoMaLoginButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
+    DoMaAndroidTheme { colors, typography ->
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
@@ -40,11 +43,12 @@ fun DoMaLoginButton(
             style = TextStyle(
                 fontSize = 16.sp,
                 fontWeight = FontWeight(700),
-                color = Color(0xFFE0E0E0),
+                color = colors.WHITE,
             )
         )
     }
 }
+    }
 
 @Preview
 @Composable
