@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import remote.api.auth.AdminAPI
 import remote.api.auth.AuthApi
 import remote.api.auth.HomeApi
 import remote.api.auth.NoticeAPI
@@ -96,6 +97,10 @@ object NetworkModule {
     fun provideNoticeApI(retrofit: Retrofit): NoticeAPI{
         return retrofit.create(NoticeAPI::class.java)
     }
+    @Provides
+    @Singleton
+    fun provideAdminAPi(retrofit: Retrofit): AdminAPI {
+        return retrofit.create(AdminAPI::class.java)
 
-
+    }
 }
