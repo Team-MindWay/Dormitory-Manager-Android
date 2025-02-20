@@ -8,9 +8,10 @@ import view.theme.color.DoMaColor
 @Composable
 fun DoMaAndroidTheme(
     colors: ColorTheme = DoMaColor,
-    content: @Composable (colors: ColorTheme) -> Unit
+    typography: Typography = DoMaTypography,
+    content: @Composable (colors: ColorTheme, typography: Typography) -> Unit
 
-    ){
-    content(colors = colors)
+){
+    content(colors = colors, typography = typography)
 
 }
