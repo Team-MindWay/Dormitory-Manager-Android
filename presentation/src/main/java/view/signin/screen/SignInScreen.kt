@@ -26,78 +26,78 @@ fun SignInScreen(
 ) {
     DoMaAndroidTheme { colors, typography ->
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(color = colors.Background)
-    ) {
         Column(
             modifier = modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
-                .weight(1f),
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Bottom
+                .fillMaxSize()
+                .background(color = colors.Background)
         ) {
-            Text(
-                text = "안녕하세요!",
-                style = DoMaTypography.headlineSmall.copy(color = colors.WHITE),
-            )
-            Text(
-                text = "로그인을 해볼까요?",
-                style = DoMaTypography.headlineSmall.copy(color = colors.Green),
-            )
-        }
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                    .weight(1f),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                Text(
+                    text = "안녕하세요!",
+                    style = DoMaTypography.headlineSmall.copy(color = colors.WHITE),
+                )
+                Text(
+                    text = "로그인을 해볼까요?",
+                    style = DoMaTypography.headlineSmall.copy(color = colors.Green),
+                )
+            }
 
-        DoMaLoginButton(
-            onClick = leIsClickLoginButton,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 10.dp)
-        )
-
-        Row(
-            horizontalArrangement = Arrangement.End,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp),
-        ) {
-            Text(
-                text = "아이디 찾기",
-                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+            DoMaLoginButton(
+                onClick = leIsClickLoginButton,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 10.dp)
             )
-            Text(
-                text = "|",
-                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
-            )
-            Text(
-                text = "비밀번호 찾기",
-                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
-            )
-        }
 
-        Spacer(modifier = Modifier.weight(1f))
+            Row(
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp),
+            ) {
+                Text(
+                    text = "아이디 찾기",
+                    style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+                )
+                Text(
+                    text = "|",
+                    style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+                )
+                Text(
+                    text = "비밀번호 찾기",
+                    style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+                )
+            }
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Bottom
-        ) {
-            Text(
-                text = "아직 함께하지 못했다면? 회원가입 하기",
-                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
-                textAlign = TextAlign.Center
-            )
-        }
+            Spacer(modifier = Modifier.weight(1f))
 
-        if (ClickButton) {
-            GAuthSigninWebView(
-                clientId = "ghskfend",
-                redirectUri = "ghskfen"
-            ) { code ->
-                gAuthLogin(code)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                Text(
+                    text = "아직 함께하지 못했다면? 회원가입 하기",
+                    style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
+                    textAlign = TextAlign.Center
+                )
+            }
+
+            if (ClickButton) {
+                GAuthSigninWebView(
+                    clientId = "ghskfend",
+                    redirectUri = "ghskfen"
+                ) { code ->
+                    gAuthLogin(code)
                 }
             }
         }
