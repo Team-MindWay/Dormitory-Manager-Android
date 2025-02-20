@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.msg.gauthsignin.GAuthSigninWebView
 import view.signin.component.DoMaLoginButton
+import view.theme.DoMaAndroidTheme
 import view.theme.DoMaTypography
 
 @Composable
@@ -23,10 +24,12 @@ fun SignInScreen(
     gAuthLogin: (String) -> Unit,
     leIsClickLoginButton: () -> Unit,
 ) {
+    DoMaAndroidTheme { colors, typography ->
+
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color(0xFF1E1E1E))
+            .background(color = colors.Background)
     ) {
         Column(
             modifier = modifier
@@ -38,17 +41,11 @@ fun SignInScreen(
         ) {
             Text(
                 text = "안녕하세요!",
-                style = DoMaTypography.headlineSmall.copy(color = Color(0xFFFFFFFF)),
-                textAlign = TextAlign.Start,
+                style = DoMaTypography.headlineSmall.copy(color = colors.WHITE),
             )
             Text(
-                text = AnnotatedString.Builder("로그인을 해볼까요?").apply {
-                    addStyle(
-                        style = SpanStyle(color = Color(0xFF9BFFA6)), start = 0, end = 4
-                    )
-                }.toAnnotatedString(),
-                style = DoMaTypography.bodyLarge.copy(color = Color(0xFFFAFAFA)),
-                textAlign = TextAlign.Start,
+                text = "로그인을 해볼까요?",
+                style = DoMaTypography.headlineSmall.copy(color = colors.Green),
             )
         }
 
@@ -67,15 +64,15 @@ fun SignInScreen(
         ) {
             Text(
                 text = "아이디 찾기",
-                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
             )
             Text(
                 text = "|",
-                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
             )
             Text(
                 text = "비밀번호 찾기",
-                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
             )
         }
 
@@ -90,7 +87,7 @@ fun SignInScreen(
         ) {
             Text(
                 text = "아직 함께하지 못했다면? 회원가입 하기",
-                style = DoMaTypography.labelLarge.copy(color = Color(0xFFFAFAFA)),
+                style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 textAlign = TextAlign.Center
             )
         }
@@ -101,6 +98,7 @@ fun SignInScreen(
                 redirectUri = "ghskfen"
             ) { code ->
                 gAuthLogin(code)
+                }
             }
         }
     }
