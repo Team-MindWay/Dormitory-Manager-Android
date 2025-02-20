@@ -13,6 +13,7 @@ import com.msg.gauthsignin.GAuthSigninWebView
 import view.signin.component.DoMaInputID
 import view.signin.component.DoMaInputPassword
 import view.signin.component.DoMaLoginButton
+import view.theme.DoMaAndroidTheme
 import view.theme.DoMaTypography
 
 @Composable
@@ -22,71 +23,74 @@ fun SignInSubScreen(
     gAuthLogin: (String) -> Unit,
     leIsClickLoginButton: () -> Unit,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(color = Color(0xFF1E1E1E))
-            .padding(horizontal = 20.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    DoMaAndroidTheme { colors, typography ->
+
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            verticalArrangement = Arrangement.Center
+            modifier = modifier
+                .fillMaxSize()
+                .background(color = colors.Background)
+                .padding(horizontal = 20.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.Start
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "아이디",
-                    style = DoMaTypography.headlineSmall.copy(color = Color(0xFF9AD54A)),
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.Bottom,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Text(
+                        text = "아이디",
+                        style = DoMaTypography.headlineSmall.copy(color = colors.Green),
+                    )
+                    Text(
+                        text = "와",
+                        style = DoMaTypography.headlineSmall.copy(color = colors.WHITE),
+                    )
+                    Text(
+                        text = " 비밀번호",
+                        style = DoMaTypography.headlineSmall.copy(color = colors.Green),
+                    )
+                    Text(
+                        text = "를 입력해주세요!",
+                        style = DoMaTypography.headlineSmall.copy(color = colors.WHITE),
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                DoMaInputID(
+                    modifier = Modifier
+                        .fillMaxWidth()
                 )
-                Text(
-                    text = "와",
-                    style = DoMaTypography.headlineSmall.copy(color = Color(0xFFFAFAFA)),
-                )
-                Text(
-                    text = " 비밀번호",
-                    style = DoMaTypography.headlineSmall.copy(color = Color(0xFF9AD54A)),
-                )
-                Text(
-                    text = "를 입력해주세요!",
-                    style = DoMaTypography.headlineSmall.copy(color = Color(0xFFFAFAFA)),
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                DoMaInputPassword(
+                    modifier = Modifier
+                        .fillMaxWidth()
                 )
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
-
-            DoMaInputID(
+            DoMaLoginButton(
+                onClick = leIsClickLoginButton,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(bottom = 30.dp)
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-            DoMaInputPassword(
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
-
-        DoMaLoginButton(
-            onClick = leIsClickLoginButton,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 30.dp)
-        )
-
-        if (ClickButton) {
-            GAuthSigninWebView(
-                clientId = "ghskfend",
-                redirectUri = "ghskfen"
-            ) { code ->
-                gAuthLogin(code)
+            if (ClickButton) {
+                GAuthSigninWebView(
+                    clientId = "ghskfend",
+                    redirectUri = "ghskfen"
+                ) { code ->
+                    gAuthLogin(code)
+                }
             }
         }
     }
