@@ -24,7 +24,7 @@ import view.theme.DoMaTypography
 fun DoMaInputPassword(
     modifier: Modifier = Modifier,
 ) {
-    val idState = remember { mutableStateOf(TextFieldValue("")) } // viewmodel 구현 후 수정 하겠습니다.
+    val passwordState = remember { mutableStateOf(TextFieldValue("")) } // viewmodel 구현 후 수정 하겠습니다.
 
     DoMaAndroidTheme { colors, typography ->
 
@@ -40,8 +40,8 @@ fun DoMaInputPassword(
             )
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = idState.value,
-                onValueChange = { idState.value = it },
+                value = passwordState.value,
+                onValueChange = { passwordState.value = it },
                 textStyle = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 shape = RoundedCornerShape(12.dp),
                 singleLine = true,
