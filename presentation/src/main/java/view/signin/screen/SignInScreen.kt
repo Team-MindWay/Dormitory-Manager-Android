@@ -76,7 +76,7 @@ fun SignInScreen(
                     style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 )
                 Text(
-                    text = "|",
+                    text = " | ",
                     style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 )
                 Text(
