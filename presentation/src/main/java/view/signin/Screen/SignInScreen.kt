@@ -32,7 +32,7 @@ fun SignInScreen(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .background(color = colors.Background)
+                .background(color = colors.BACKGROUND)
         ) {
             Column(
                 modifier = modifier
@@ -48,7 +48,7 @@ fun SignInScreen(
                 )
                 Text(
                     text = "로그인을 해볼까요?",
-                    style = DoMaTypography.headlineSmall.copy(color = colors.Green),
+                    style = DoMaTypography.headlineSmall.copy(color = colors.GREEN),
                 )
             }
 
