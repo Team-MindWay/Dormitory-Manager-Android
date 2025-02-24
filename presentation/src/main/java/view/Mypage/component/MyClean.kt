@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -12,113 +14,213 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kim.presentation.R
+import model.users.response.UsersResponseModel
+import view.theme.DoMaAndroidTheme
+import viewmodel.users.uistate.UsersUiState
 
 @Composable
 fun MyClean(
     modifier: Modifier = Modifier,
-    toDayClean: String,
-    penaltyPoint: Int,
-    cleanPoint: Int,
+    usersUiState: UsersUiState,
+    onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp))
-            .padding(start = 10.dp, top = 16.dp, end = 20.dp, bottom = 16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        // 오늘의 청소 구역
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = "오늘의 청소 구역",
-                style = TextStyle(
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.W500,
-                    color = Color.White,
-                )
-            )
-            Text(
-                text = toDayClean,
-                style = TextStyle(
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.W500,
-                    color = Color.White,
-                )
-            )
+    when (usersUiState) {
+        is UsersUiState.Fail -> {
+            onErrorToast(usersUiState.exception, R.string.error)
         }
 
-        // 벌점
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = "벌점",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.W500,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                )
-            )
-            Text(
-                text = "${penaltyPoint}점",
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.W600,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
+        is UsersUiState.Success -> {
+            val data = usersUiState.data
+            MyCleanComponent(
+                modifier = modifier,
+                data = data
             )
         }
+        is UsersUiState.Loading -> {
 
-        // 남은 청소
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = "남은 청소",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.W500,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                )
-            )
-            Text(
-                text = stringResource(
-                    R.string.CleanResource,
-                    cleanPoint
-                ),
-                style = TextStyle(
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.W600,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                )
-            )
+        }
+        is UsersUiState.Empty ->{
+
         }
     }
 }
 
 @Composable
-@Preview
-fun PreviewMyClean() {
-    MyClean(
-        penaltyPoint = 1,
-        toDayClean = "3층 화장실",
-        cleanPoint = 4
-    )
+fun MyCleanComponent(
+    modifier: Modifier = Modifier,
+    data: UsersResponseModel,
+) {
+    DoMaAndroidTheme { colors, typography ->
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.Start,
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 235.dp),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Text(
+                    text = "안녕하세요", style = TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight(600),
+                        color = colors.WHITE,
+                    )
+                )
+                Text(
+                    text = AnnotatedString.Builder("${data.name}님").apply {
+                        addStyle(
+                            style = SpanStyle(
+                                color = colors.Green, fontSize = 27.sp  // 이산 부분의 글자 크기 설정
+                            ),
+                            start = 0, end = 2
+                        )
+                    }.toAnnotatedString(), style = TextStyle(
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight(900),
+                        color = colors.WHITE,
+                        textAlign = TextAlign.Start
+                    )
+                )
+            }
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp))
+                    .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+
+                // 호실
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "호실",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.WHITE
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = "${data.roomNum}호",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.Green,
+                            textAlign = TextAlign.End
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // 남은 청소
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "남은 청소",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.WHITE
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = "${data.cleanPoint}회",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.Green,
+                            textAlign = TextAlign.End
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // 벌점
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "벌점",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.WHITE
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = "${data.penaltyPoint}점",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.Green,
+                            textAlign = TextAlign.End
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // 오늘의 청소
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "오늘의 청소",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.WHITE
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = "${data.todayClean}학년",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = typography.bodySmall.fontFamily,
+                            fontWeight = FontWeight.W500,
+                            color = colors.Green,
+                            textAlign = TextAlign.End
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+    }
 }
+
