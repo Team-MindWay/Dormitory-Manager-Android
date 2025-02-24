@@ -9,7 +9,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import remote.api.auth.AdminAPI
 import remote.api.auth.AuthApi
+import remote.api.auth.HomeApi
+import remote.api.auth.NoticeAPI
 import remote.api.auth.UsersAPi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -53,10 +56,13 @@ object NetworkModule {
     }
 
     @Provides
+
     @Singleton
     fun provideMoshiConverterFactory(moshi: Moshi): MoshiConverterFactory {
         return MoshiConverterFactory.create(moshi)
     }
+
+
 
     @Provides
     @Singleton
@@ -80,5 +86,21 @@ object NetworkModule {
     @Singleton
     fun provideUserAPi(retrofit: Retrofit): UsersAPi{
         return retrofit.create(UsersAPi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideHomeAPi(retrofit: Retrofit): HomeApi {
+        return retrofit.create(HomeApi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideNoticeApI(retrofit: Retrofit): NoticeAPI{
+        return retrofit.create(NoticeAPI::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideAdminAPi(retrofit: Retrofit): AdminAPI {
+        return retrofit.create(AdminAPI::class.java)
+
     }
 }

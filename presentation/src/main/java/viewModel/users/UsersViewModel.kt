@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import usecase.Users.GetUsersUseCase
 import viewmodel.users.uistate.UsersUiState
+import java.util.UUID
 
 import javax.inject.Inject
 
@@ -22,8 +23,10 @@ class UsersViewModel @Inject constructor(
     private val _usersUiState = MutableStateFlow<UsersUiState>(UsersUiState.Loading)
     internal val usersUiState = _usersUiState.asStateFlow()
 
-    fun getUsers() = viewModelScope.launch {
-        getUsersUseCase()
+    fun getUsers(userId: UUID) = viewModelScope.launch {
+        getUsersUseCase(
+            userId = userId
+        )
             .asResult()
             .collectLatest { result ->
                 when (result) {
@@ -32,15 +35,11 @@ class UsersViewModel @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        _usersUiState.value = UsersUiState.Fail
+                        _usersUiState.value = UsersUiState.Fail(result.exception)
                     }
 
                     is Result.Success -> {
-                        if (result.data.isEmpty()) {
-                            _usersUiState.value = UsersUiState.Empty
-                        } else {
-                            _usersUiState.value = UsersUiState.Success(result.data.toImmutableList())
-                        }
+                        _usersUiState.value = UsersUiState.Success(result.data)
                     }
                 }
             }

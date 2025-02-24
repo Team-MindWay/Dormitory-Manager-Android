@@ -6,8 +6,8 @@ import repository.AuthRepository
 import javax.inject.Inject
 
 class TokenRefreshUseCase @Inject constructor(
-    private val authrepoistory: AuthRepository
+    private val authRepository: AuthRepository
 ) {
-   operator suspend fun invoke(refreshToken: String): Flow<GAuthLoginResponseModel> =
-       authrepoistory.gAuthAccess(refreshToken = "Bearer $refreshToken")
+  suspend operator fun invoke(refreshToken: String): Flow<GAuthLoginResponseModel> =
+       authRepository.gAuthAccess(refreshToken = "Bearer $refreshToken")
 }

@@ -11,4 +11,5 @@ data class UsersResponseModel (
      val myBecause: String,
      val because: String,
      val pointList: Int,
+     val roomNum: Int,
 )

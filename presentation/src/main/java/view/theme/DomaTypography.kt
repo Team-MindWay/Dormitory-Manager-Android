@@ -9,9 +9,8 @@ import androidx.compose.ui.unit.sp
 import com.kim.presentation.R
 
 val suit = FontFamily(
-    Font(R.font.suitbold),
     Font(R.font.suitregular),
-
+    Font(R.font.suitbold),
 )
 
 
