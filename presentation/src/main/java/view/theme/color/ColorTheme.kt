@@ -17,4 +17,7 @@ abstract class ColorTheme {
 
     abstract val CardShadow: Color
     abstract val StatusShadow: Color
+
+    abstract val Background: Color
+    abstract val Green: Color
 }
