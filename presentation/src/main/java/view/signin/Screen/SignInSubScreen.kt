@@ -34,7 +34,7 @@ fun SignInSubScreen(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .background(color = colors.Background)
+                .background(color = colors.BACKGROUND)
                 .padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -52,7 +52,7 @@ fun SignInSubScreen(
                 ) {
                     Text(
                         text = "아이디",
-                        style = DoMaTypography.headlineSmall.copy(color = colors.Green),
+                        style = DoMaTypography.headlineSmall.copy(color = colors.GREEN),
                     )
                     Text(
                         text = "와",
@@ -60,7 +60,7 @@ fun SignInSubScreen(
                     )
                     Text(
                         text = " 비밀번호",
-                        style = DoMaTypography.headlineSmall.copy(color = colors.Green),
+                        style = DoMaTypography.headlineSmall.copy(color = colors.GREEN),
                     )
                     Text(
                         text = "를 입력해주세요!",
