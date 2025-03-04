@@ -10,11 +10,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import model.admin.request.AdminCleanRequestModel
 import model.admin.request.AdminPenaltyRequestModel
-import okhttp3.internal.toImmutableList
-import usecase.Users.GetUsersUseCase
 import usecase.admin.GetAdminUsersUseCase
 import usecase.admin.GetPenaltyListUseCase
-import usecase.admin.GetUsersNameUseCase
 import usecase.admin.PostCleanUseCase
 import usecase.admin.PostPenaltyUseCase
 import viewmodel.admin.uistate.AdminUiState
@@ -26,7 +23,6 @@ import javax.inject.Inject
 
 class AdminViewModel @Inject constructor(
     private val getAdminUsersUseCase: GetAdminUsersUseCase,
-    private val getUserNameUseCase: GetUsersNameUseCase,
     private val postPenaltyUseCase: PostPenaltyUseCase,
     private val getPenaltyListUseCase: GetPenaltyListUseCase,
     private val postCleanUseCase: PostCleanUseCase
@@ -70,29 +66,6 @@ class AdminViewModel @Inject constructor(
             }
     }
 
-    internal fun getUsersName(name: String?) = viewModelScope.launch {
-        getUserNameUseCase(
-            name = name
-        )
-            .asResult()
-            .collectLatest { result ->
-                when (result) {
-                    is Untill.Result.Success -> {
-                        _getUserNameUiState.value = GetUserNameUiState.Success(result.data)
-                    }
-
-                    is Untill.Result.Loading -> {
-                        _getUserNameUiState.value = GetUserNameUiState.Loading
-                    }
-
-                    is Untill.Result.Error -> {
-                        _getUserNameUiState.value = GetUserNameUiState.Fail
-                    }
-
-                }
-
-            }
-    }
     internal fun postPenalty(userId: String, body: AdminPenaltyRequestModel) = viewModelScope.launch {
         postPenaltyUseCase(
             userId = userId,
