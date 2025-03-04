@@ -7,4 +7,5 @@ data class AdminUserListResponseModel(
     val penaltyPoint: Int,
     val role: String,
     val userId: UUID,
+    val roomNum: Int
 )
