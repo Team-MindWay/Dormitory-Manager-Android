@@ -80,8 +80,6 @@ fun DemeritComponent(
                 tint = Color.White
             )
         }
-
-
         AnimatedVisibility(
             visible = isExpanded,
             enter = expandVertically() + fadeIn(),
