@@ -49,11 +49,8 @@ internal fun NoticeList(
         is NoticeUiState.Fail -> {
             onErrorToast(noticeUiState.exception, R.string.error)
         }
-
     }
-
 }
-
 
 @Composable
 private fun NoticeCard(
