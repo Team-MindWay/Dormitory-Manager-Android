@@ -41,7 +41,7 @@ import com.kim.presentation.R
 import emumtype.Authority
 import kotlinx.coroutines.delay
 import view.main.component.MyRanking
-import view.main.component.PostDemerit
+import view.main.component.PostDemeritComponent
 import view.main.component.RankingList
 import view.main.component.StudentPatch
 import view.main.component.TimeComponent
@@ -237,7 +237,7 @@ fun MainScreen(
                             )
                         if (role != Authority.ROLE_USER) {
                             Spacer(modifier = Modifier.width(16.dp))
-                            PostDemerit(
+                            PostDemeritComponent(
                                 onDemeritStudentClick = onDemeritStudentClick
                             )
                             Spacer(modifier = Modifier.width(16.dp))
