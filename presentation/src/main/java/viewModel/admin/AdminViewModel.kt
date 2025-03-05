@@ -1,6 +1,6 @@
 package viewmodel.admin
 
-import Untill.asResult
+import until.asResult
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,8 +10,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import model.admin.request.AdminCleanRequestModel
 import model.admin.request.AdminPenaltyRequestModel
-import okhttp3.internal.toImmutableList
-import usecase.Users.GetUsersUseCase
 import usecase.admin.GetAdminUsersUseCase
 import usecase.admin.GetPenaltyListUseCase
 import usecase.admin.GetUsersNameUseCase
@@ -53,15 +51,15 @@ class AdminViewModel @Inject constructor(
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _getUserUiState.value = GetUserUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
+                    is until.Result.Loading -> {
                         _getUserUiState.value = GetUserUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _getUserUiState.value = GetUserUiState.Fail
                     }
 
@@ -77,15 +75,15 @@ class AdminViewModel @Inject constructor(
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _getUserNameUiState.value = GetUserNameUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
+                    is until.Result.Loading -> {
                         _getUserNameUiState.value = GetUserNameUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _getUserNameUiState.value = GetUserNameUiState.Fail
                     }
 
@@ -101,15 +99,15 @@ class AdminViewModel @Inject constructor(
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _adminUiState.value = AdminUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
+                    is until.Result.Loading -> {
                         _adminUiState.value =  AdminUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _adminUiState.value = AdminUiState.Fail
                     }
 
@@ -122,15 +120,15 @@ class AdminViewModel @Inject constructor(
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _getPenaltyListUiState.value = GetPenaltyListUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
+                    is until.Result.Loading -> {
                         _getPenaltyListUiState.value =   GetPenaltyListUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _getPenaltyListUiState.value =  GetPenaltyListUiState.Fail
                     }
 
@@ -146,15 +144,15 @@ class AdminViewModel @Inject constructor(
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _postCleanUiState.value = PostCleanUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
+                    is until.Result.Loading -> {
                         _postCleanUiState.value =   PostCleanUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _postCleanUiState.value = PostCleanUiState.Fail
                     }
 
