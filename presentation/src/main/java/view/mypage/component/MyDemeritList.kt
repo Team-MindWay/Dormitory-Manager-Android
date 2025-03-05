@@ -1,4 +1,4 @@
-package view.Mypage.component
+package view.mypage.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
@@ -74,7 +74,6 @@ fun MyDemeritComponent(
             .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp))
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        // 헤더: 클릭하면 펼쳐짐/접힘 전환
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -89,8 +88,6 @@ fun MyDemeritComponent(
                 ),
                 modifier = Modifier.weight(1f)
             )
-
-            // 펼쳐짐/접힘 아이콘
             Icon(
                 modifier = Modifier
                     .clickable { isExpanded = !isExpanded },
@@ -101,7 +98,6 @@ fun MyDemeritComponent(
             )
         }
 
-        // 애니메이션 적용된 벌점 내역
         AnimatedVisibility(
             visible = isExpanded,
             enter = expandVertically() + fadeIn(),
