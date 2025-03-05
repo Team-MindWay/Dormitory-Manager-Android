@@ -1,4 +1,4 @@
-package view.Mypage.component
+package view.mypage.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,12 +19,14 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kim.presentation.R
 import model.users.response.UsersResponseModel
 import view.theme.DoMaAndroidTheme
 import viewmodel.users.uistate.UsersUiState
+import java.util.UUID
 
 @Composable
 fun MyClean(
@@ -64,32 +66,28 @@ fun MyCleanComponent(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 20.dp, end = 235.dp),
-                horizontalAlignment = Alignment.Start,
-            ) {
+            Row {
                 Text(
-                    text = "안녕하세요", style = TextStyle(
+                    text = "안녕하세요! ",
+                    style = TextStyle(
                         fontSize = 20.sp,
-                        fontWeight = FontWeight(600),
-                        color = colors.WHITE,
+                        fontWeight = FontWeight.SemiBold,
+                        color = colors.WHITE
                     )
                 )
                 Text(
                     text = AnnotatedString.Builder("${data.name}님").apply {
                         addStyle(
                             style = SpanStyle(
-                                color = colors.GRAY, fontSize = 27.sp  // 이산 부분의 글자 크기 설정
+                                color = colors.GRAY, fontSize = 20.sp
                             ),
-                            start = 0, end = 2
+                            start = 0, end = data.name.length
                         )
-                    }.toAnnotatedString(), style = TextStyle(
+                    }.toAnnotatedString(),
+                    style = TextStyle(
                         fontSize = 22.sp,
-                        fontWeight = FontWeight(900),
-                        color = colors.WHITE,
-                        textAlign = TextAlign.Start
+                        fontWeight = FontWeight.Black,
+                        color = colors.WHITE
                     )
                 )
             }
@@ -224,3 +222,20 @@ fun MyCleanComponent(
     }
 }
 
+@Composable
+@Preview
+fun preview(){
+    MyCleanComponent(
+        data = UsersResponseModel(
+            because = "dd",
+            cleanPoint = 3,
+            myBecause = "tktl",
+            name = "dd",
+            penaltyPoint = 3,
+            roomNum = 3,
+            todayClean = "오늘",
+            userId =UUID.randomUUID(),
+            pointList = 3
+        )
+    )
+}
