@@ -1,6 +1,6 @@
-package view.Mypage.Screen
+package view.mypage.screen
 
-import androidx.activity.ComponentActivity
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,13 +18,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import view.Mypage.component.DemeritList
-import view.Mypage.component.MyDemeritList
-import view.Mypage.component.MyClean
+import view.mypage.component.DemeritList
+import view.mypage.component.MyDemeritList
+import view.mypage.component.MyClean
 import viewmodel.users.UsersViewModel
 import viewmodel.users.uistate.UsersUiState
 import java.util.UUID
@@ -33,7 +32,7 @@ import java.util.UUID
 internal fun MyPageRoute(
     modifier: Modifier = Modifier,
     onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
-    viewModel: UsersViewModel = hiltViewModel(LocalContext.current as ComponentActivity),
+    viewModel: UsersViewModel = hiltViewModel(),
     navigateToBack: () -> Unit,
 ) {
     val usersUiState by viewModel.usersUiState.collectAsStateWithLifecycle()
@@ -53,10 +52,10 @@ fun MyPage(
     modifier: Modifier = Modifier,
     onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
     navigateToBack: () -> Unit,
+    scrollState: ScrollState = rememberScrollState(),
     usersUiState: UsersUiState,
     getUserCallBack: (UUID) -> Unit,
 ) {
-    val scrollState = rememberScrollState()
     var uuid by remember { mutableStateOf(UUID.randomUUID()) }
 
     LaunchedEffect(Unit) {
@@ -83,27 +82,11 @@ fun MyPage(
                 onErrorToast = onErrorToast,
                 modifier = modifier,
             )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp, bottom = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
-            horizontalAlignment = Alignment.Start,
-        ) {
             MyDemeritList(
                 usersUiState = usersUiState,
                 onErrorToast = onErrorToast,
                 modifier = modifier,
             )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
-            horizontalAlignment = Alignment.Start,
-        ) {
             DemeritList(
                 usersUiState = usersUiState,
                 onErrorToast = onErrorToast,
