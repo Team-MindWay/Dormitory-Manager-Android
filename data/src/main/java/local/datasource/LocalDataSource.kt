@@ -15,6 +15,10 @@ interface LocalDataSource {
 
     suspend fun deleteAccessTime()
 
+    fun getAuthority(): Flow<String>
+
+    suspend fun setAuthority(authority: String)
+
     fun getRefreshToken(): Flow<String>
 
     suspend fun setRefreshToken(refreshToken: String)
