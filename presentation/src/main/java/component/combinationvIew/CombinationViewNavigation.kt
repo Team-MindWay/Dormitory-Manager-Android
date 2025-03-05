@@ -1,4 +1,4 @@
-package component.combinationVIew
+package component.combinationvIew
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
