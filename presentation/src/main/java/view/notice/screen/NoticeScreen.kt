@@ -50,7 +50,6 @@ fun NoticeRoute(
         noticeCallBack = viewModel::getNotice,
         onErrorToast = onErrorToast,
     )
-
 }
 @Composable
 fun NoticeScreen(
