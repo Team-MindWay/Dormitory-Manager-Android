@@ -1,4 +1,4 @@
-package component.modifier
+package component.navigationbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.kim.presentation.component.modifier.clickablesingle
+import component.modifier.HomeIcon
+import component.modifier.MyPageIcon
+import component.modifier.NoticeIcon
 import emumtype.DomaNavBarItemType
 import view.theme.DoMaAndroidTheme
 
@@ -54,7 +57,7 @@ fun DomaNavBar(
                         }
 
                         DomaNavBarItemType.MY -> {
-                           MyPageIcon(
+                            MyPageIcon(
                                 isSelected = currentDestination == item,
                                 modifier = modifier,
                             )
