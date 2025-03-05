@@ -5,9 +5,9 @@ import model.admin.response.AdminUserListResponseModel
 import reopoistory.AdminRepository
 import javax.inject.Inject
 
-class GetUsersNameUseCase @Inject constructor(
+class GetStudentSearchUseCase @Inject constructor(
     private val adminRepository: AdminRepository
 ) {
-    operator fun invoke(name: String?): Flow<List<AdminUserListResponseModel>> =
-        adminRepository.getUsersName(name = name)
+    operator fun invoke(name: String): Flow<List<AdminUserListResponseModel>> =
+        adminRepository.getStudentSearch(name = name)
 }
