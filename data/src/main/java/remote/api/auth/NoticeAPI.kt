@@ -10,5 +10,4 @@ interface NoticeAPI {
     suspend fun getNotice(
         @Path("notice_id") noticeId: UUID,
     ): List<NoticeResponse>
-
 }
