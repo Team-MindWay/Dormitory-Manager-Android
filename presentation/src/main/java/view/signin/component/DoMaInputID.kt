@@ -26,7 +26,7 @@ fun DoMaInputID(
     DoMaAndroidTheme { colors, typography ->
 
         Column(
-            modifier = Modifier
+            modifier = modifier
         ) {
             Text(
                 text = "아이디",
