@@ -29,7 +29,7 @@ fun DoMaInputPassword(
     DoMaAndroidTheme { colors, typography ->
 
         Column(
-            modifier = Modifier
+            modifier = modifier
         ) {
             Text(
                 text = "비밀번호",
