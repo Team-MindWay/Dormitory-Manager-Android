@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import component.navigationbar.DomaNavBar
 import emumtype.DomaNavBarItemType
-import view.mypage.Screen.MyPageRoute
+import view.mypage.screen.MyPageRoute
 import view.main.screen.MainRoute
 import view.notice.screen.NoticeRoute
 
