@@ -1,4 +1,4 @@
-package view.Mypage.component
+package view.mypage.component
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
