@@ -55,7 +55,7 @@ import viewmodel.login.uistate.TokenRefreshUiState
 internal fun MainRoute(
     navigateToBack: () -> Unit,
     onDemeritStudentClick: () -> Unit,
-    onStudentPatchClick: ()-> Unit,
+    onStudentPatchClick: () -> Unit,
     onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
     viewModel: HomesViewModel = hiltViewModel(LocalContext.current as ComponentActivity)
 ) {
@@ -89,7 +89,7 @@ fun MainScreen(
     isRefreshing: Boolean,
     tokenRefreshCallBack: () -> Unit,
     initTokenRefreshCallBack: () -> Unit,
-    onDemeritStudentClick: ()->Unit,
+    onDemeritStudentClick: () -> Unit,
     tokenRefreshUiState: TokenRefreshUiState,
     homesUiState: HomesUiState,
     myRankCallBack: () -> Unit,
@@ -231,10 +231,10 @@ fun MainScreen(
                                 )
                             )
                         }
-                            RankingList(
-                                homeUiState = homesUiState,
-                                onErrorToast = onErrorToast
-                            )
+                        RankingList(
+                            homeUiState = homesUiState,
+                            onErrorToast = onErrorToast
+                        )
                         if (role != Authority.ROLE_USER) {
                             Spacer(modifier = Modifier.width(16.dp))
                             PostDemeritComponent(
