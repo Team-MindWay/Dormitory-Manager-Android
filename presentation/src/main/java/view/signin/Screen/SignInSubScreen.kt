@@ -70,10 +70,7 @@ fun SignInSubScreen(
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                DoMaInputID(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
+                DoMaInputID(modifier = Modifier.fillMaxWidth())
 
                 Spacer(modifier = Modifier.height(12.dp))
 
