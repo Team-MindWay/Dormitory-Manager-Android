@@ -21,4 +21,5 @@ abstract class ColorTheme {
     abstract val BACKGROUND: Color
     abstract val GREEN: Color
     abstract val RED: Color
+    abstract val LOGIN: Color
 }
