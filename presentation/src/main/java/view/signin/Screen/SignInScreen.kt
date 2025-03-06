@@ -35,7 +35,7 @@ fun SignInScreen(
                 .background(color = colors.BACKGROUND)
         ) {
             Column(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
                     .weight(1f),
