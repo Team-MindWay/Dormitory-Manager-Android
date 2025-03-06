@@ -70,10 +70,7 @@ fun SignInSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                DoMaInputPassword(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
+                DoMaInputPassword(modifier = Modifier.fillMaxWidth())
             }
 
             DoMaLoginButton(
