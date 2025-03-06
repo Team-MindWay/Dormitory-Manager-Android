@@ -20,4 +20,5 @@ object DoMaColor : ColorTheme(){
     override val BACKGROUND = Color(0xFF1E1E1E)
     override val GREEN = Color(0xFF9AD54A)
     override val RED = Color(0xFFE43620)
+    override val LOGIN = Color(0xFF4C4C4C)
 }
