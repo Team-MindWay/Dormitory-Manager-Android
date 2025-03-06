@@ -99,7 +99,6 @@ fun SignInScreen(
                     .padding(bottom = 20.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-
                 ) {
                 Text(
                     text = "아직 함께하지 못했다면?",
