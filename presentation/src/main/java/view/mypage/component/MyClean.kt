@@ -46,11 +46,13 @@ fun MyClean(
                 data = data
             )
         }
+
         is UsersUiState.Loading -> {
 
         }
-        is UsersUiState.Empty ->{
 
+        is UsersUiState.Empty -> {
+            MyPageEmptyText()
         }
     }
 }
@@ -68,7 +70,7 @@ fun MyCleanComponent(
         ) {
             Row {
                 Text(
-                    text = "안녕하세요! ",
+                    text = "안녕하세요!",
                     style = TextStyle(
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -224,7 +226,7 @@ fun MyCleanComponent(
 
 @Composable
 @Preview
-fun preview(){
+fun MyCleanPreview() {
     MyCleanComponent(
         data = UsersResponseModel(
             because = "dd",
@@ -234,7 +236,7 @@ fun preview(){
             penaltyPoint = 3,
             roomNum = 3,
             todayClean = "오늘",
-            userId =UUID.randomUUID(),
+            userId = UUID.randomUUID(),
             pointList = 3
         )
     )
