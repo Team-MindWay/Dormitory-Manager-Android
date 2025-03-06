@@ -19,17 +19,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kim.presentation.R
 import model.users.response.UsersResponseModel
+import view.theme.DoMaAndroidTheme
 import viewmodel.users.uistate.UsersUiState
+
 @Composable
 internal fun DemeritList(
     modifier: Modifier = Modifier,
     usersUiState: UsersUiState,
     onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
-){
+) {
     when (usersUiState) {
         is UsersUiState.Fail -> {
             onErrorToast(usersUiState.exception, R.string.error)
         }
+
         is UsersUiState.Success -> {
             val data = usersUiState.data
             DemeritComponent(
@@ -37,13 +40,17 @@ internal fun DemeritList(
                 data = data
             )
         }
+
         is UsersUiState.Loading -> {
 
         }
-        is UsersUiState.Empty ->{
+
+        is UsersUiState.Empty -> {
+            MyPageEmptyText()
         }
     }
 }
+
 @Composable
 fun DemeritComponent(
     modifier: Modifier = Modifier,
@@ -51,61 +58,59 @@ fun DemeritComponent(
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-    ) {
+    DoMaAndroidTheme {
+            colors, typography ->
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .background(color = colors.MAIN, shape = RoundedCornerShape(size = 10.dp))
+                .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
-            Text(
-                text = "벌점 리스트",
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                ),
-                modifier = Modifier.weight(1f)
-            )
-
-
-            Icon(
-                modifier = Modifier.clickable { isExpanded = !isExpanded },
-                painter = painterResource(id = if (isExpanded) R.drawable.down else R.drawable.up),
-                contentDescription = "Expand Toggle",
-                tint = Color.White
-            )
-        }
-        AnimatedVisibility(
-            visible = isExpanded,
-            enter = expandVertically() + fadeIn(),
-            exit = shrinkVertically() + fadeOut()
-        ) {
-            Column(
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top),
-                horizontalAlignment = Alignment.Start
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(
-                        R.string.stringResource,
-                        data.myBecause,
-                        data.penaltyPoint
-                    ),
+                    text = "벌점 리스트",
                     style = TextStyle(
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFFC1C1C1)
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colors.WHITE
                     ),
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.weight(1f)
                 )
+                Icon(
+                    modifier = Modifier.clickable { isExpanded = !isExpanded },
+                    painter = painterResource(id = if (isExpanded) R.drawable.down else R.drawable.up),
+                    contentDescription = "Expand Toggle",
+                    tint = colors.WHITE
+                )
+            }
+            AnimatedVisibility(
+                visible = isExpanded,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = stringResource(
+                            R.string.stringResource, data.myBecause, data.penaltyPoint
+                        ),
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = Color(0xFFC1C1C1)
+                        ),
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
             }
         }
     }
 }
-
 
