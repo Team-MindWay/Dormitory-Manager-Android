@@ -1,6 +1,7 @@
 package view.main.screen
 
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -97,6 +98,7 @@ fun MainScreen(
     homesMyRankUiState: HomesMyRankUiState,
     onErrorToast: (throwable: Throwable?, message: Int?) -> Unit,
     navigateToBack: () -> Unit,
+    scrollState: ScrollState = rememberScrollState(),
     onStudentPatchClick: () -> Unit
 ) {
     LaunchedEffect(Unit) {
@@ -110,7 +112,6 @@ fun MainScreen(
         onDispose { initTokenRefreshCallBack() }
     }
 
-    val scrollState = rememberScrollState()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isRefreshing)
     var currentTime by rememberSaveable { mutableStateOf(System.currentTimeMillis()) }
     LaunchedEffect("Time") {
@@ -190,11 +191,9 @@ fun MainScreen(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = "이번주 랭킹", style = TextStyle(
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight(700),
-                                    color = Color(0xFFFFFFFF),
-                                )
+                                text= "이번주 랭킹",
+                                style =  typography.labelLarge,
+                                color = colors.WHITE
                             )
                         }
                         Row(
@@ -216,19 +215,15 @@ fun MainScreen(
                             Spacer(modifier = Modifier.width(32.dp))
 
                             Text(
-                                text = "이름", style = TextStyle(
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight(600),
-                                    color = Color(0xFF555555),
-                                )
+                                text = "이름",
+                                style = typography.labelLarge,
+                                color = colors.WHITE
                             )
                             Spacer(modifier = Modifier.width(150.dp))
                             Text(
-                                text = "횟수", style = TextStyle(
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight(600),
-                                    color = Color(0xFF555555),
-                                )
+                                text ="횟수",
+                                style = typography.labelLarge,
+                                color = colors.WHITE
                             )
                         }
                         RankingList(
