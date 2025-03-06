@@ -44,7 +44,6 @@ internal fun MyDemeritList(
         is UsersUiState.Fail -> {
             onErrorToast(usersUiState.exception, R.string.error)
         }
-
         is UsersUiState.Success -> {
             val data = usersUiState.data
             MyDemeritComponent(
@@ -53,7 +52,7 @@ internal fun MyDemeritList(
             )
         }
         is UsersUiState.Empty ->{
-
+            MyPageEmptyText()
         }
         is UsersUiState.Loading -> {
 
@@ -104,7 +103,9 @@ fun MyDemeritComponent(
             exit = shrinkVertically() + fadeOut()
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top),
                 horizontalAlignment = Alignment.Start
             ) {
