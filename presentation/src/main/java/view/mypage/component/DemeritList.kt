@@ -104,7 +104,7 @@ fun DemeritComponent(
                         style = TextStyle(
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
-                            color = Color(0xFFC1C1C1)
+                            color = colors.GRAY
                         ),
                         modifier = Modifier.padding(top = 8.dp)
                     )
@@ -113,4 +113,3 @@ fun DemeritComponent(
         }
     }
 }
-
