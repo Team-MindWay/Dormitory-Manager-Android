@@ -63,7 +63,6 @@ fun DomaNavBar(
                             )
                         }
                     }
-
                 }
             }
         }
