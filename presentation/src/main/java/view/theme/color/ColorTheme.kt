@@ -9,6 +9,7 @@ abstract class ColorTheme {
     abstract val DARKGARY: Color
 
     abstract val GRAY: Color
+    abstract val LIGHTGRAY: Color
     abstract val Gold: Color
     abstract val silver: Color
     abstract val Broze: Color

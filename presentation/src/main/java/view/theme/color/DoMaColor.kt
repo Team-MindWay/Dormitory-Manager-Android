@@ -8,6 +8,8 @@ object DoMaColor : ColorTheme(){
     override val Black = Color(0xFF000000)
     override val WHITE = Color(0xFFFFFFFF)
 
+
+    override val LIGHTGRAY = Color(0xFF555555)
     override val GRAY = Color(0xFF9AD54A)
     override val Gold = Color(0xFFFFD651)
     override val silver = Color(0xFFBEBEBE)
