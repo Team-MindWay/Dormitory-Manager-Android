@@ -1,7 +1,7 @@
 package viewmodel.homes
 
-import Untill.asResult
-import Untill.Result
+import until.asResult
+import until.Result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow

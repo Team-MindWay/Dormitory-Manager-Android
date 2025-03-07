@@ -1,4 +1,4 @@
-package Untill
+package until
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

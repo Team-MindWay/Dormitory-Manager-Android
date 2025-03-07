@@ -17,5 +17,8 @@ object DoMaColor : ColorTheme(){
     override val CardShadow = Color(0xFF1A1A1A) // 카드 그림자 색상
     override val StatusShadow = Color(0xFF141414) //
 
-
+    override val BACKGROUND = Color(0xFF1E1E1E)
+    override val GREEN = Color(0xFF9AD54A)
+    override val RED = Color(0xFFE43620)
+    override val LOGIN = Color(0xFF4C4C4C)
 }
