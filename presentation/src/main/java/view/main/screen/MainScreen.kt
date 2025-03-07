@@ -161,7 +161,6 @@ fun MainScreen(
                         .padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 16.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
                     horizontalAlignment = Alignment.Start,
-
                     ) {
                     MyRanking(
                         homesMyRankUiState = homesMyRankUiState,
@@ -174,7 +173,6 @@ fun MainScreen(
                         .padding(horizontal = 20.dp),
                     horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
                     verticalAlignment = Alignment.CenterVertically,
-
                     ) {
                     Column(
                         modifier = Modifier
@@ -184,7 +182,6 @@ fun MainScreen(
                                 color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp)
                             ),
                         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
-
                         ) {
                         Column(
                             modifier = Modifier.fillMaxWidth(),
@@ -202,22 +199,21 @@ fun MainScreen(
                                 .padding(start = 28.dp, top = 12.dp, end = 27.dp, bottom = 4.dp),
                             horizontalArrangement = Arrangement.Start,
                             verticalAlignment = Alignment.CenterVertically,
-
                             ) {
                             Text(
+                                modifier = Modifier.weight(0.2f),
                                 text = "순위",
                                 style = typography.labelLarge,
                                 color = colors.SMAlLDARKGARY
                             )
-                            Spacer(modifier = Modifier.width(32.dp))
-
                             Text(
+                                modifier = Modifier.weight(0.6f),
                                 text = "이름",
                                 style = typography.labelLarge,
                                 color = colors.SMAlLDARKGARY
                             )
-                            Spacer(modifier = Modifier.width(150.dp))
                             Text(
+                                modifier = Modifier.weight(0.2f),
                                 text ="횟수",
                                 style = typography.labelLarge,
                                 color = colors.SMAlLDARKGARY
