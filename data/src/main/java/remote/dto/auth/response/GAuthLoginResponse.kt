@@ -1,12 +1,12 @@
 package remote.dto.auth.response
 
-import model.auth.response.DoMaLoginResponseModel
+import model.auth.response.GAuthLoginResponseModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import emumtype.Authority
 
 @JsonClass(generateAdapter = true)
-data class DoMaLoginResponse(
+data class GAuthLoginResponse(
     @Json(name = "accessToken") val accessToken: String,
     @Json(name = "refreshToken") val refreshToken: String,
     @Json(name = "accessTokenExpiresIn") val accessTokenExpiresIn: String,
@@ -14,7 +14,7 @@ data class DoMaLoginResponse(
     @Json(name = "Authority") val authority: Authority
 )
 
-fun DoMaLoginResponseModel.toLogin()= DoMaLoginResponseModel(
+fun GAuthLoginResponse.toLogin()= GAuthLoginResponseModel(
     accessToken=accessToken,
     refreshToken=refreshToken,
     accessTokenExpiresIn=accessTokenExpiresIn,
