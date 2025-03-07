@@ -22,7 +22,6 @@ import view.theme.DoMaAndroidTheme
 fun PostDemeritComponent(
     modifier: Modifier = Modifier,
     onDemeritStudentClick: () -> Unit,
-
     ) {
     DoMaAndroidTheme {
             colors, typography ->
@@ -33,7 +32,6 @@ fun PostDemeritComponent(
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-
             ) {
             Text(
                 text = "벌점 주기",
