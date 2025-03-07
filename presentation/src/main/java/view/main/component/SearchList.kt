@@ -26,6 +26,7 @@ import com.kim.presentation.R
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import model.admin.response.AdminUserListResponseModel
+import view.theme.DoMaAndroidTheme
 import viewmodel.homes.uistate.StudentListUiState
 import viewmodel.homes.uistate.StudentSearchUiState
 
@@ -94,51 +95,54 @@ fun SearchItem(
     modifier: Modifier = Modifier,
     data: AdminUserListResponseModel
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp)),
-        verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Row(
-            modifier = Modifier
+    DoMaAndroidTheme { colors, typography ->
+
+        Column(
+            modifier = modifier
                 .fillMaxWidth()
-                .height(57.dp)
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFF4C4C4C),
-                    shape = RoundedCornerShape(size = 10.dp)
-                ),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
+                .background(color = Color(0xFF252525), shape = RoundedCornerShape(size = 10.dp)),
+            verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                text = "${data.roomNum}호",
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight(700),
-                    color = Color(0xFFFFFFFF),
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(57.dp)
+                    .border(
+                        width = 1.dp,
+                        color = colors.GRAY,
+                        shape = RoundedCornerShape(size = 10.dp)
+                    ),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = "${data.roomNum}호",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight(700),
+                        color = colors.WHITE,
+                    )
                 )
-            )
-            Spacer(modifier = Modifier.width(20.dp))
-            Text(
-                text = data.name,
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight(600),
-                    color = Color(0xFFFFFFFF),
+                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = data.name,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight(600),
+                        color = colors.WHITE,
+                    )
                 )
-            )
-            Spacer(modifier = Modifier.width(152.dp))
-            Text(
-                text = "${data.penaltyPoint}점",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight(600),
-                    color = Color(0xFFFFFFFF),
+                Spacer(modifier = Modifier.width(152.dp))
+                Text(
+                    text = "${data.penaltyPoint}점",
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight(600),
+                        color = colors.WHITE,
+                    )
                 )
-            )
+            }
         }
     }
 }
@@ -168,4 +172,5 @@ internal fun SearchListComponent(
         }
     }
 }
+
 
