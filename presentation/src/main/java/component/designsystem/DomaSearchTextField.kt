@@ -87,7 +87,7 @@ fun DomaSearchTextField(
                     .focusRequester(focusRequester)
                     .border(
                         width = 1.dp,
-                        color = Color(0xFF4C4C4C),
+                        color = colors.SMAlLDARKGARY,
                         shape = RoundedCornerShape(size = 8.dp)
                     )
                     .background(colors.MAIN)
