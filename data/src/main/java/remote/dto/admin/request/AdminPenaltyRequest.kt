@@ -12,7 +12,6 @@ data class AdminPenaltyRequest (
     @Json(name = "because") val because: String,
     @Json(name = "accountIdx") val accountIdx: UUID,
     @Json(name = "authority") val authority: Authority
-
 )
 
 fun AdminPenaltyRequestModel.toDto() = AdminPenaltyRequest(
@@ -27,5 +26,4 @@ fun AdminPenaltyRequest.toModel() = AdminPenaltyRequestModel(
     penaltyPoint = penaltyPoint,
     accountIdx = accountIdx,
     authority = authority
-
 )
