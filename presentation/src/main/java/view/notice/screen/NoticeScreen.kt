@@ -69,18 +69,14 @@ fun NoticeScreen(
             modifier = modifier
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .background(color = Color(0xFF1E1E1E))
+                .background(color = colors.BACKGROUND)
         ) {
             Spacer(modifier = Modifier.height(40.dp))
             Text(
                 text = "공지사항",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontFamily = typography.titleMedium.fontFamily,
-                    fontWeight = FontWeight.Medium,
-                    color = colors.WHITE,
-                    textAlign = TextAlign.Center
-                ),
+                style = typography.bodyLarge,
+                color = colors.WHITE,
+                textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 16.dp)

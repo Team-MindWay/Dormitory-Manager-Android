@@ -5,8 +5,10 @@ import androidx.compose.ui.graphics.Color
 object DoMaColor : ColorTheme(){
     override val MAIN = Color(0xFF252525)
     override val DARKGARY = Color(0xFFBEBEBE)
+    override val SMAlLDARKGARY = Color(0xFF4C4C4C)
     override val Black = Color(0xFF000000)
     override val WHITE = Color(0xFFFFFFFF)
+    override val BACKGROUND = Color(0xFF1E1E1E)
 
 
     override val LIGHTGRAY = Color(0xFF555555)
@@ -19,6 +21,9 @@ object DoMaColor : ColorTheme(){
 
     override val CardShadow = Color(0xFF1A1A1A) // 카드 그림자 색상
     override val StatusShadow = Color(0xFF141414) //
+
+
+
 
 
 }

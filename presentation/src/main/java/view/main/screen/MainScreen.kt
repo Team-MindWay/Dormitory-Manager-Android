@@ -205,25 +205,22 @@ fun MainScreen(
 
                             ) {
                             Text(
-                                text = "순위", style = TextStyle(
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight(600),
-                                    color = Color(0xFF555555),
-
-                                    )
+                                text = "순위",
+                                style = typography.labelLarge,
+                                color = colors.SMAlLDARKGARY
                             )
                             Spacer(modifier = Modifier.width(32.dp))
 
                             Text(
                                 text = "이름",
                                 style = typography.labelLarge,
-                                color = colors.WHITE
+                                color = colors.SMAlLDARKGARY
                             )
                             Spacer(modifier = Modifier.width(150.dp))
                             Text(
                                 text ="횟수",
                                 style = typography.labelLarge,
-                                color = colors.WHITE
+                                color = colors.SMAlLDARKGARY
                             )
                         }
                         RankingList(

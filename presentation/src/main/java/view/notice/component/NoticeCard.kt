@@ -93,17 +93,15 @@ fun NoticeCardItem(
             Text(
                 text = data.title,
                 color = colors.WHITE,
-                fontFamily = typography.bodySmall.fontFamily,
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
+                style = typography.labelLarge
             )
             Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = data.content,
                 color = colors.WHITE,
-                fontFamily = typography.bodySmall.fontFamily,
-                fontSize = 12.sp,
-                maxLines = 1,
+                style = typography.labelLarge,
+                maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
         }
