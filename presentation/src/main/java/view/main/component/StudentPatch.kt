@@ -23,8 +23,7 @@ import view.theme.DoMaAndroidTheme
 fun StudentPatch(
     modifier: Modifier = Modifier,
     onStudentPatchClick: () -> Unit,
-
-    ) {
+) {
     DoMaAndroidTheme { colors, typography ->
         Row(
             modifier = modifier
@@ -33,26 +32,23 @@ fun StudentPatch(
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-
-            ) {
+        ) {
             Text(
                 text = "벌점 주기",
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontFamily = typography.bodySmall.fontFamily,
                     fontWeight = FontWeight(500),
-                    color = Color.White,
+                    color = colors.WHITE,
                     textAlign = TextAlign.Start,
                 )
             )
             IconButton(
-                onClick = {  onStudentPatchClick() },
+                onClick = { onStudentPatchClick() },
                 modifier = Modifier,
-            ){
+            ) {
                 DoMaIcon()
             }
-
         }
-
     }
 }
