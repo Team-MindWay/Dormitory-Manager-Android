@@ -20,7 +20,6 @@ fun DoMaIcon(
         contentDescription = "버튼",
         modifier = modifier
     )
-
 }
 @Composable
 fun SerchIcon(
