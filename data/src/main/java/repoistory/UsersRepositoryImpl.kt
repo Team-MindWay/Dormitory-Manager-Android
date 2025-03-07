@@ -15,4 +15,4 @@ class UsersRepositoryImpl @Inject constructor(
 
     override suspend fun getUsers(userId: UUID): Flow<UsersResponseModel> {
         return usersDataSource.getUsers(userId = userId).map { it.toModel() } }
-    }
+}
