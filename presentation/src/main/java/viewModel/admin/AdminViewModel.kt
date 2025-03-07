@@ -67,9 +67,7 @@ class AdminViewModel @Inject constructor(
     internal fun postPenalty(userId: String, body: AdminPenaltyRequestModel) =
         viewModelScope.launch {
             postPenaltyUseCase(
-                userId = userId,
-                body = body
-            )
+                userId = userId, body = body)
                 .asResult()
                 .collectLatest { result ->
                     when (result) {
