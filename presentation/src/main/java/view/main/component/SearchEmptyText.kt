@@ -31,7 +31,5 @@ internal fun SearchEmptyText() {
                 color = colors.CardShadow
             )
         }
-
     }
-
 }
