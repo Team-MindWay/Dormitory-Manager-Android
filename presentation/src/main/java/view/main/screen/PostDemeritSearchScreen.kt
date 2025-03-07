@@ -109,33 +109,30 @@ fun PostDemeritSearchScreen(
                 .padding(start = 28.dp, top = 12.dp, end = 27.dp, bottom = 4.dp),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-
             ) {
+
             Text(
-                text = "호수", style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight(600),
-                    color = Color(0xFF555555),
-                )
+                text = "호수",
+                style= typography.labelLarge,
+                color = colors.LIGHTGRAY
             )
+
             Spacer(modifier = Modifier.width(32.dp))
 
             Text(
-                text = "이름", style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight(600),
-                    color = Color(0xFF555555),
-                )
+                text = "이름",
+                style= typography.labelLarge,
+                color = colors.LIGHTGRAY
             )
             Spacer(modifier = Modifier.width(150.dp))
+
             Text(
-                text = "점수", style = TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight(600),
-                    color = Color(0xFF555555),
-                )
+                text = "점수",
+                style= typography.labelLarge,
+                color = colors.LIGHTGRAY
             )
         }
+
         SearchList(
             searchUiState = searchUiState,
             studentListUiState = studentListUiState,
