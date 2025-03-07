@@ -9,6 +9,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +32,7 @@ fun DoMaLoginButton(
             modifier = modifier
                 .fillMaxWidth()
                 .clickablesingle(onClick = onClick)
-                .background(color = Color(0xFF494949), shape = RoundedCornerShape(size = 10.dp))
+                .background(color = colors.LOGIN, shape = RoundedCornerShape(size = 10.dp))
                 .padding(
                     horizontal = 16.dp,
                     vertical = 12.dp,
