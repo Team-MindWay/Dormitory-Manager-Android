@@ -21,7 +21,7 @@ fun DomaNavBar(
     currentDestination: DomaNavBarItemType,
     setCurrentDestination: (DomaNavBarItemType) -> Unit,
 ) {
-    DoMaAndroidTheme { colors, typography ->
+    DoMaAndroidTheme { colors, _ ->
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = modifier
