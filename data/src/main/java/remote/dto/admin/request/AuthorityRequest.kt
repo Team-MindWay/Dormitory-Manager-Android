@@ -2,7 +2,6 @@ package remote.dto.admin.request
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import model.admin.request.AdminPenaltyRequestModel
 import model.admin.request.AuthorityRequestModel
 
 @JsonClass(generateAdapter = true)
@@ -19,5 +18,4 @@ fun AuthorityRequestModel.toDto() = AuthorityRequest(
 fun AuthorityRequest.toModel() = AuthorityRequestModel(
     accountIdx = accountIdx,
     authority = authority
-
 )
