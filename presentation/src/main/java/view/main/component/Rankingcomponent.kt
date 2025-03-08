@@ -45,7 +45,6 @@ internal fun RankingList(
 
         is HomesUiState.Success -> {
             val list = homeUiState.data
-
             RankingListItem(
                 modifier = modifier,
                 list = list.toPersistentList()

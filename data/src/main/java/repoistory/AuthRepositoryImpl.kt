@@ -19,6 +19,10 @@ class AuthRepositoryImpl @Inject constructor(
        return gAuthDataSource.gAuthLogout()
     }
 
+    override fun getRole(): Flow<String> {
+        return localDataSource.getAuthority()
+    }
+
     override suspend fun gAuthAccess(refreshToken: String): Flow<GAuthLoginResponseModel> {
       return gAuthDataSource.gAuthAccess().map { it.toLogin()  }
     }

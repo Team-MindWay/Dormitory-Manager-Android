@@ -15,5 +15,7 @@ interface AuthRepository {
 
      suspend fun saveToken(data: GAuthLoginResponseModel)
 
+     fun getRole(): Flow<String>
+
      suspend fun deleteToken()
 }

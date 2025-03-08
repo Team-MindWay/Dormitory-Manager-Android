@@ -1,6 +1,6 @@
 package viewmodel.admin
 
-import Untill.asResult
+import until.asResult
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,11 +10,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import model.admin.request.AdminCleanRequestModel
 import model.admin.request.AdminPenaltyRequestModel
-import okhttp3.internal.toImmutableList
-import usecase.Users.GetUsersUseCase
 import usecase.admin.GetAdminUsersUseCase
 import usecase.admin.GetPenaltyListUseCase
-import usecase.admin.GetUsersNameUseCase
 import usecase.admin.PostCleanUseCase
 import usecase.admin.PostPenaltyUseCase
 import viewmodel.admin.uistate.AdminUiState
@@ -26,11 +23,10 @@ import javax.inject.Inject
 
 class AdminViewModel @Inject constructor(
     private val getAdminUsersUseCase: GetAdminUsersUseCase,
-    private val getUserNameUseCase: GetUsersNameUseCase,
     private val postPenaltyUseCase: PostPenaltyUseCase,
     private val getPenaltyListUseCase: GetPenaltyListUseCase,
     private val postCleanUseCase: PostCleanUseCase
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _adminUiState = MutableStateFlow<AdminUiState>(AdminUiState.Empty)
     val adminUiState: StateFlow<AdminUiState> = _adminUiState.asStateFlow()
@@ -53,117 +49,86 @@ class AdminViewModel @Inject constructor(
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _getUserUiState.value = GetUserUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
+                    is until.Result.Loading -> {
                         _getUserUiState.value = GetUserUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _getUserUiState.value = GetUserUiState.Fail
                     }
-
                 }
-
             }
     }
 
-    internal fun getUsersName(name: String?) = viewModelScope.launch {
-        getUserNameUseCase(
-            name = name
-        )
+    internal fun postPenalty(userId: String, body: AdminPenaltyRequestModel) =
+        viewModelScope.launch {
+            postPenaltyUseCase(
+                userId = userId, body = body)
+                .asResult()
+                .collectLatest { result ->
+                    when (result) {
+                        is until.Result.Success -> {
+                            _adminUiState.value = AdminUiState.Success(result.data)
+                        }
+
+                        is until.Result.Loading -> {
+                            _adminUiState.value = AdminUiState.Loading
+                        }
+
+                        is until.Result.Error -> {
+                            _adminUiState.value = AdminUiState.Fail
+                        }
+
+                    }
+                }
+        }
+
+    internal fun getPenaltyList() = viewModelScope.launch {
+        getPenaltyListUseCase()
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
-                        _getUserNameUiState.value = GetUserNameUiState.Success(result.data)
+                    is until.Result.Success -> {
+                        _getPenaltyListUiState.value = GetPenaltyListUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
-                        _getUserNameUiState.value = GetUserNameUiState.Loading
+                    is until.Result.Loading -> {
+                        _getPenaltyListUiState.value = GetPenaltyListUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
-                        _getUserNameUiState.value = GetUserNameUiState.Fail
+                    is until.Result.Error -> {
+                        _getPenaltyListUiState.value = GetPenaltyListUiState.Fail
                     }
 
                 }
 
             }
     }
-    internal fun postPenalty(userId: String, body: AdminPenaltyRequestModel) = viewModelScope.launch {
-        postPenaltyUseCase(
+
+    internal fun postClean(userId: String, body: AdminCleanRequestModel) = viewModelScope.launch {
+        postCleanUseCase(
             userId = userId,
             body = body
         )
             .asResult()
             .collectLatest { result ->
                 when (result) {
-                    is Untill.Result.Success -> {
-                        _adminUiState.value = AdminUiState.Success(result.data)
-                    }
-
-                    is Untill.Result.Loading -> {
-                        _adminUiState.value =  AdminUiState.Loading
-                    }
-
-                    is Untill.Result.Error -> {
-                        _adminUiState.value = AdminUiState.Fail
-                    }
-
-                }
-
-            }
-    }
-    internal fun getPenaltyList() = viewModelScope.launch {
-        getPenaltyListUseCase()
-            .asResult()
-            .collectLatest { result ->
-                when (result) {
-                    is Untill.Result.Success -> {
-                        _getPenaltyListUiState.value = GetPenaltyListUiState.Success(result.data)
-                    }
-
-                    is Untill.Result.Loading -> {
-                        _getPenaltyListUiState.value =   GetPenaltyListUiState.Loading
-                    }
-
-                    is Untill.Result.Error -> {
-                        _getPenaltyListUiState.value =  GetPenaltyListUiState.Fail
-                    }
-
-                }
-
-            }
-    }
-    internal fun postClean(userId: String, body: AdminCleanRequestModel) = viewModelScope.launch {
-       postCleanUseCase(
-           userId = userId,
-           body = body
-       )
-            .asResult()
-            .collectLatest { result ->
-                when (result) {
-                    is Untill.Result.Success -> {
+                    is until.Result.Success -> {
                         _postCleanUiState.value = PostCleanUiState.Success(result.data)
                     }
 
-                    is Untill.Result.Loading -> {
-                        _postCleanUiState.value =   PostCleanUiState.Loading
+                    is until.Result.Loading -> {
+                        _postCleanUiState.value = PostCleanUiState.Loading
                     }
 
-                    is Untill.Result.Error -> {
+                    is until.Result.Error -> {
                         _postCleanUiState.value = PostCleanUiState.Fail
                     }
-
                 }
-
             }
     }
-
-
-
-
 }

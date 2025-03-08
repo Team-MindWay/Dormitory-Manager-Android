@@ -54,8 +54,6 @@ internal fun MyRanking(
 }
 
 
-
-
 @Composable
 fun MyRankingComponent(
     modifier: Modifier = Modifier,
@@ -98,10 +96,4 @@ fun MyRankingComponent(
             )
         }
     }
-}
-
-@Composable
-@Preview
-fun PreviewMyRankingComponent() {
-
 }
