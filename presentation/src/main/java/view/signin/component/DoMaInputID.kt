@@ -49,10 +49,10 @@ fun DoMaInputID(
                     )
                 },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    backgroundColor = Color(0xFF1E1E1E),
-                    cursorColor = Color.White,
-                    focusedBorderColor = Color(0xFFB9B9B9),
-                    unfocusedBorderColor = Color(0xFFB9B9B9)
+                    backgroundColor = colors.BACKGROUND,
+                    cursorColor = colors.WHITE,
+                    focusedBorderColor = colors.GRAY,
+                    unfocusedBorderColor = colors.GRAY
                 )
             )
         }
