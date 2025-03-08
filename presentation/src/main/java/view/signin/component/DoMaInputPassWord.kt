@@ -55,8 +55,8 @@ fun DoMaInputPassword(
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     backgroundColor = DoMaColor.BACKGROUND,
                     cursorColor = DoMaColor.WHITE,
-                    focusedBorderColor = DoMaColor.silver,
-                    unfocusedBorderColor = DoMaColor.silver
+                    focusedBorderColor = DoMaColor.GRAY,
+                    unfocusedBorderColor = DoMaColor.GRAY
                 )
             )
         }
