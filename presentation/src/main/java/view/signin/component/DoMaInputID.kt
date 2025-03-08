@@ -19,9 +19,9 @@ import view.theme.DoMaTypography
 @Composable
 fun DoMaInputID(
     modifier: Modifier = Modifier,
+    idValue: TextFieldValue,
+    onIdValueChange: (TextFieldValue) -> Unit
 ) {
-    val idState = remember { mutableStateOf(TextFieldValue("")) } // viewmodel 구현 후 수정 하겠습니다.
-
     DoMaAndroidTheme { colors, typography ->
 
         Column(
@@ -36,8 +36,8 @@ fun DoMaInputID(
             )
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = idState.value,
-                onValueChange = { idState.value = it },
+                value = idValue,
+                onValueChange = onIdValueChange,
                 textStyle = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 shape = RoundedCornerShape(12.dp),
                 singleLine = true,
@@ -61,5 +61,10 @@ fun DoMaInputID(
 @Preview
 @Composable
 fun PreviewDoMaInputID() {
-    DoMaInputID()
+    val idState = remember { mutableStateOf(TextFieldValue("")) }
+
+    DoMaInputID(
+        idValue = idState.value,
+        onIdValueChange = { idState.value = it }
+    )
 }
