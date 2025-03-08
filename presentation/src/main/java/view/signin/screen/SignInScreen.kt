@@ -67,12 +67,7 @@ fun SignInScreen(
             ) {
                 Text(
                     text = "아이디 찾기",
-                    modifier = Modifier
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = rememberRipple(),
-                            onClick = { /* TODO: 아이디 찾기 처리 */ }
-                        ),
+                    modifier = Modifier,
                     style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 )
                 Text(
@@ -81,12 +76,7 @@ fun SignInScreen(
                 )
                 Text(
                     text = "비밀번호 찾기",
-                    modifier = Modifier
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = rememberRipple(),
-                            onClick = { /* TODO: 비밀번호 찾기 처리 */ }
-                        ),
+                    modifier = Modifier,
                     style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                 )
             }
@@ -109,9 +99,6 @@ fun SignInScreen(
 
                 Text(
                     text = "회원가입 하기",
-                    modifier = Modifier
-                        .clickable { /* TODO: 회원가입 화면으로 이동 */ }
-                        .semantics { contentDescription = "회원가입 페이지로 이동" },
                     style = DoMaTypography.labelLarge.copy(color = colors.WHITE),
                     textAlign = TextAlign.Center
                 )
