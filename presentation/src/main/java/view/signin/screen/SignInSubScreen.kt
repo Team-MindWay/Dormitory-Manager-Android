@@ -11,9 +11,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,6 +33,10 @@ fun SignInSubScreen(
     clickButton: Boolean,
     gAuthLogin: (String) -> Unit,
     leIsClickLoginButton: () -> Unit,
+    idValue: TextFieldValue,
+    onIdValueChange: (TextFieldValue) -> Unit,
+    passwordValue: TextFieldValue,
+    onPasswordValueChange: (TextFieldValue) -> Unit
 ) {
     DoMaAndroidTheme { colors, typography ->
 
@@ -66,11 +73,19 @@ fun SignInSubScreen(
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                DoMaInputID(modifier = Modifier.fillMaxWidth())
+                DoMaInputID(
+                    modifier = Modifier.fillMaxWidth(),
+                    idValue = idValue,
+                    onIdValueChange = onIdValueChange
+                    )
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                DoMaInputPassword(modifier = Modifier.fillMaxWidth())
+                DoMaInputPassword(
+                    modifier = Modifier.fillMaxWidth(),
+                    passwordValue = passwordValue,
+                    onPasswordValueChange = onPasswordValueChange
+                  )
             }
 
             DoMaLoginButton(
@@ -95,9 +110,16 @@ fun SignInSubScreen(
 @Preview
 @Composable
 fun PreviewSignInSubScreen() {
+    val idState = remember { mutableStateOf(TextFieldValue("")) }
+    val passwordState = remember { mutableStateOf(TextFieldValue("")) }
+
     SignInSubScreen(
         clickButton = false,
         gAuthLogin = {},
-        leIsClickLoginButton = {}
+        leIsClickLoginButton = {},
+        idValue = idState.value,
+        onIdValueChange = { idState.value = it },
+        passwordValue = passwordState.value,
+        onPasswordValueChange = { passwordState.value = it }
     )
 }
